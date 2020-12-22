@@ -1,0 +1,1 @@
+//import hotelModel from './models/hotel.js';
