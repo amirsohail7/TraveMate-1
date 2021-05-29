@@ -1,0 +1,40 @@
+.main {
+  display: flex;
+  background-image: url("/images/tour.jpg");
+  background-size: 100%;
+  backface-visibility: visible;
+  color: #ffffff;
+}
+.main div {
+  padding: 10px;
+}
+.side_bar {
+  justify-content: space-evenly;
+  flex-basis: 15%;
+  height: 100%;
+}
+.items {
+  background-color: rgba(33, 60, 68, 0.473);
+  flex-basis: 75%;
+}
+
+.loader {
+  display: flex;
+
+  border: 16px solid #a499cebb; /* Light grey */
+  border-top: 16px solid #ffffff; /* Blue */
+  border-bottom: 16px solid #4d29d179; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

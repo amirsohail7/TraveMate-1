@@ -15,5 +15,5 @@ destLocation: {
 
 });
 
-const destination = mongoose.model("destination", destinationSchema)
-export default destination;
+const Destination = mongoose.model("Destination", destinationSchema)
+export default Destination;

@@ -1,15 +1,71 @@
 import mongoose from 'mongoose';
 
 const hotelSchema = new mongoose.Schema({
- hotelName: {
+
+ provider: {
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'Provider',
+    required: true,
+
+ },
+  
+ Name: {
     type: String,
     required: true,
  },
- hotelAddress: {
+ city:{
+   type:String,
+   required: true,
+ },
+ 
+ address:{
+   type:String,
+   required: true,
+ },
+
+ phone:{
+   type:Number,
+   required: true,
+ },
+
+ description:{
+   type:String,
+   required: true,
+ },
+
+ rating:{
+    type:String,
+    required: true,
+ },
+ 
+ category: {
     type: String,
     required: true,
  },
- hotelServices: {
+ 
+ priceRange: {
+   type: String,
+   required: true,
+},
+ menu: {
+    type:String,
+ },
+
+ openingTime:{
+   type:String,
+   required: true,
+ },
+
+ closingTime:{
+   type:String,
+   required: true,
+ },
+
+ daysOpen:{
+   type:String,
+   required: true,
+ },
+ facilities: {
     type: Array,
     required: true,
  }
@@ -19,5 +75,5 @@ const hotelSchema = new mongoose.Schema({
 
 });
 
-const hotel = mongoose.model("hotel", hotelSchema)
-export default hotel;
+const Hotel = mongoose.model("Hotel", hotelSchema)
+export default Hotel;

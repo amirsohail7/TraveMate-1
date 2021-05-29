@@ -1,0 +1,39 @@
+.searchbar {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    max-width: 100%;
+    padding: 15px;
+    height: 60px;
+    width: 500px;
+    border: 1px solid lightgray;
+    border-radius: 999px;
+    backdrop-filter: blur(30px);
+    margin-top: 10%;
+  }
+  
+  .searchbar > input {
+    border: none;
+    padding: 10px;
+    padding-left: 30px;
+    padding-bottom: 14px;
+    outline-width: 0px;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+  }
+  
+  /* .input-text{
+    we are targeting this child of searchbar by > input styling
+  } */
+ 
+  .search-button{
+    border:none;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    color: #fff;
+  }
+
+/* .suggestions{
+  background-color: blue;
+} */

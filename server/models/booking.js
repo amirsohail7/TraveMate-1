@@ -1,18 +1,37 @@
 import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
- tourID: {
-    type: Number,
-    required: true,
- },
- 
- userID: {
-   type: String,
-   required: true,
-},
- providerID: {
+ serviceType:{
     type:String,
     required: true,
+ },
+
+ services: {
+   type:mongoose.Schema.Types.ObjectId,
+   ref:'Destination',
+   ref:'Hotel',
+   ref:'Restaurant',   
+  },
+ 
+ traveler: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'Traveler',
+   required: true,
+},
+
+ provider: {
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'Provider',
+    required: true,
+
+ },
+ paymentType:{
+   type:String,
+   required: true,
+ },
+ 
+ paymentStatus:{
+   type:String,
 
  }
 

@@ -2,13 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .home,
 .hotels,
 .resturants,
-.packages,
+.blog,
 .sign-up {
   display: flex;
   height: 90vh;
@@ -18,7 +18,7 @@
 }
 
 .hotels {
-  background-image: url('/images/img-2.jpg');
+  background-image: url("/images/img-2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +27,7 @@
 }
 
 .resturants {
-  background-image: url('/images/img-1.jpg');
+  background-image: url("/images/img-1.jpg");
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
@@ -35,8 +35,8 @@
   font-size: 100px;
 }
 
-.packages {
-  background-image: url('/images/img-1.jpg');
+.blog {
+  background-image: url("/images/img-1.jpg");
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@
 }
 
 .sign-up {
-  background-image: url('/images/img-8.jpg');
+  background-image: url("/images/img-8.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -54,7 +54,6 @@
 }
 
 /* register form app.css file*/
-
 
 /* @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap'); */
 

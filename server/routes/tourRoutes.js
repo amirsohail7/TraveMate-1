@@ -1,12 +1,17 @@
+import express from 'express';
 import { Router } from 'express';
-import { tour_create_get, tour_index, tour_create_post, tour_details, tour_delete } from '../controllers/tourController';
+import {all_tours, all_tours_detailed,specific_tour, create_tour, delete_tour, add_provider} from '../controllers/tourController.js';
+
+
 
 const router = Router();
 
-router.get('/create', tour_create_get);
-router.get('/', tour_index);
-router.post('/', tour_create_post);
-router.get('/:id', tour_details);
-router.delete('/:id', tour_delete);
+router.get('/', all_tours);
+router.get('/detailed', all_tours_detailed);
+router.get('/:id', specific_tour);
+router.post('/create_tour', create_tour);
+router.put('/:tid/provider/:pid', add_provider);
+router.delete('/delete/:id', delete_tour);
+
 
 export default router;
