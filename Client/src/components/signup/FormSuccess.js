@@ -1,27 +1,27 @@
-import React from 'react';
-import './Form.css';
+import React from "react";
+import "./Form.css";
 import { useHistory } from "react-router-dom";
-import useState from 'react';
-
-// const [value, setValue] = useState('Provider');
-// const history = useHistory();
-
-// const redirect= () => {
-
-//     if(value==="Provider")
-//       history.push('/Provider');
-//     else
-//       history.push('/Traveler');
-// };
 
 const FormSuccess = () => {
-  
+  const history = useHistory();
+  var userType = sessionStorage.getItem("userType");
+
+  const redirect = () => {
+    console.log("clicked");
+    if (userType === "Provider") {
+      history.push("/ProviderDash");
+      console.log("redirect to Provider dash");
+    }
+    if (userType === "Traveler") {
+      console.log("redirect to travler dash");
+      history.push("/TravelerDash");
+    }
+  };
+
   return (
-    <div className='form-content-right'>
-      <h1 className='form-success'>Registration Successfull!</h1>
-     
-      
-      
+    <div className="form-content-right">
+      <h1 className="form-success">Registration Successfull!</h1>
+      <button onClick={redirect}> Proceed </button>
     </div>
   );
 };

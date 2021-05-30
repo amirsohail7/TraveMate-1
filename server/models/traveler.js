@@ -1,44 +1,36 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const travelerSchema = new mongoose.Schema({
- name: {
+  username: {
     type: String,
     required: true,
-    },
- 
- age: {
-   type: Number,
-   required: true,
-    },
- dob: {
-    type:Date,
+  },
+
+  age: {
+    type: Number,
+  },
+  dob: {
+    type: Date,
+  },
+  email: {
+    type: String,
     required: true,
-
-    },
- email:{
-     type:String,
-     required:true,
-    },
- password:{
-     type:String,
-     required:true,
-    },
- phone:{
-     type:Number,
-     required:true,
-    },
- interests:{
-   citiesVisited:[String],
-   activities:[String],
-   bookmarks:[Number],
-   Likes:[Number],
-    
- },
- //timestamps: true
-
-
-
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: Number,
+  },
+  interests: {
+    citiesVisited: [String],
+    activities: [String],
+    bookmarks: [Number],
+    Likes: [Number],
+  },
+  //timestamps: true
 });
 
-const Traveler = mongoose.model("Traveler", travelerSchema)
+const Traveler = mongoose.model("Traveler", travelerSchema);
 export default Traveler;
