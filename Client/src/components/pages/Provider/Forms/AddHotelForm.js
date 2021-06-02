@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import formCSS from "./forms.module.css";
 
-const AddRestaurantForum = () => {
+const AddHotelForum = () => {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
@@ -23,7 +23,7 @@ const AddRestaurantForum = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const restaurant = {
+    const hotel = {
       name,
       city,
       address,
@@ -39,21 +39,19 @@ const AddRestaurantForum = () => {
       daysOpen,
     };
 
-    axios
-      .post("http://localhost:3040/restaurant/create_restaurant", restaurant)
-      .then(() => {
-        // history.push('/')
-        console.log("data is posted");
-      });
+    axios.post("http://localhost:3040/hotel/create_hotel", hotel).then(() => {
+      // history.push('/')
+      console.log("data is posted");
+    });
   };
   return (
-    <div className={formCSS.restaurantbg}>
+    <div className={formCSS.hotelbg}>
       <div className={formCSS.container}>
-        <h2 className={formCSS.form__title}>Add Restaurant</h2>
+        <h2 className={formCSS.form__title}>Add Hotel</h2>
 
         <form className={formCSS.form} onSubmit={handleSubmit}>
           <div className={formCSS.form__item}>
-            <label className={formCSS.form__label}>Restaurant title:</label>
+            <label className={formCSS.form__label}>Hotel title:</label>
             <input
               className={formCSS.form__input}
               type="text"
@@ -194,11 +192,11 @@ const AddRestaurantForum = () => {
             />
           </div>
 
-          <button className={formCSS.btn}> Add Restaurant</button>
+          <button className={formCSS.btn}> Add Hotel</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddRestaurantForum;
+export default AddHotelForum;

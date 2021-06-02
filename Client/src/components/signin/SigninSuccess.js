@@ -1,17 +1,20 @@
 import React from "react";
+import "./Signin.css";
 import { useHistory } from "react-router-dom";
 
 const SigninSuccess = () => {
   const history = useHistory();
   var userType = sessionStorage.getItem("userType");
+  console.log(userType);
 
   const redirect = () => {
     console.log("clicked");
-    if (userType === "Provider") {
+    console.log(userType);
+    if (userType == "Provider") {
       history.push("/ProviderDash");
       console.log("redirect to Provider dash");
     }
-    if (userType === "Traveler") {
+    if (userType == "Traveler") {
       console.log("redirect to travler dash");
       history.push("/TravelerDash");
     }
@@ -20,7 +23,10 @@ const SigninSuccess = () => {
   return (
     <div className="form-content-right">
       <h1 className="form-success">Login SuccessFull!!</h1>
-      <button onClick={redirect}> Proceed </button>
+      <button className="proceed-btn" onClick={redirect}>
+        {" "}
+        Proceed{" "}
+      </button>
     </div>
   );
 };

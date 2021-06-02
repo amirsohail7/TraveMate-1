@@ -4,14 +4,14 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import formCSS from "./forms.module.css";
 
-const AddTourForum = () => {
+const AddBlogForum = () => {
   const [Name, setName] = useState(" ");
   const [Destination, setDestination] = useState(" ");
   const [Departure, setDeparture] = useState(" ");
   const [DepartureLocation, setDepartureLocation] = useState(" ");
   const [Price, setPrice] = useState(" ");
   const [provider, setProvider] = useState(sessionStorage.getItem("userID"));
-  const [tourStatus, setStatus] = useState(" ");
+  const [blogStatus, setStatus] = useState(" ");
   const [Description, setDescription] = useState(" ");
 
   const history = useHistory();
@@ -19,32 +19,32 @@ const AddTourForum = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const tour = {
+    const blog = {
       Name,
       Destination,
       Departure,
       DepartureLocation,
       Price,
       provider,
-      tourStatus,
+      blogStatus,
       Description,
     };
 
-    axios.post("http://localhost:3040/tour/create_tour", tour).then(() => {
+    axios.post("http://localhost:3040/blog/create_blog", blog).then(() => {
       history.push("/ProviderDash");
       console.log("data is posted");
-      console.log(tour);
+      console.log(blog);
     });
   };
 
   return (
-    <div className={formCSS.tourbg}>
+    <div className={formCSS.blogbg}>
       <div className={formCSS.container}>
-        <h2 className={formCSS.form__title}>Add Tour Form</h2>
+        <h2 className={formCSS.form__title}>Add Blog Form</h2>
 
         <form className={formCSS.form} onSubmit={handleSubmit}>
           <div className={formCSS.form__item}>
-            <label className={formCSS.form__label}>Tour Title : </label>
+            <label className={formCSS.form__label}>Blog Title : </label>
             <input
               className={formCSS.form__input}
               type="text"
@@ -88,7 +88,7 @@ const AddTourForum = () => {
           </div>
 
           <div className={formCSS.form__item}>
-            <label className={formCSS.form__label}>Tour Cost : </label>
+            <label className={formCSS.form__label}>Blog Cost : </label>
             <input
               className={formCSS.form__input}
               type="text"
@@ -109,12 +109,12 @@ const AddTourForum = () => {
           </div>
 
           <div className={formCSS.form__item}>
-            <label className={formCSS.form__label}>Tour Status : </label>
+            <label className={formCSS.form__label}>Blog Status : </label>
             <input
               className={formCSS.form__input}
               type="text"
               required
-              value={tourStatus}
+              value={blogStatus}
               onChange={(e) => setStatus(e.target.value)}
             />
           </div>
@@ -125,4 +125,4 @@ const AddTourForum = () => {
     </div>
   );
 };
-export default AddTourForum;
+export default AddBlogForum;

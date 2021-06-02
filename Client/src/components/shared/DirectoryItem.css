@@ -1,8 +1,8 @@
 .item_preview {
   padding: 10px 16px;
   margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
-  background: #979696;
+
+  background: #ffffff;
 }
 .item_preview:hover {
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
@@ -12,6 +12,7 @@
   color: #f1356d;
   margin-bottom: 8px;
 }
-.item_preview a {
-  text-decoration: none;
+.item_preview p {
+  font-size: 13px;
+  margin-bottom: 1px;
 }

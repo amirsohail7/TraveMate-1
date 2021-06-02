@@ -29,7 +29,6 @@ const travelerSchema = new mongoose.Schema({
     bookmarks: [Number],
     Likes: [Number],
   },
-  //timestamps: true
 });
 
 const Traveler = mongoose.model("Traveler", travelerSchema);

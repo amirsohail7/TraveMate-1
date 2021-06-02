@@ -1,12 +1,10 @@
-import React from 'react';
-import '../../App.css';
-import DirectoryItem from '../shared/DirectoryItem';
-import axios from 'axios';
+import React from "react";
+import "../../App.css";
+import DirectoryItem from "../shared/DirectoryItem";
+import axios from "axios";
 import useFetch from "../shared/useFetch";
-import './Tours.css'
-import {Card} from 'react-bootstrap/'
-
-
+import "./Tours.css";
+import { Card } from "react-bootstrap/";
 
 //fetch restaurants from data base and store in const x useeffect to fetch
 /*async function get_tours() {
@@ -17,39 +15,29 @@ import {Card} from 'react-bootstrap/'
     return response
 }*/
 
-
 const Tours = () => {
+  const {
+    error,
+    isPending,
+    data: tours,
+  } = useFetch("http://localhost:3040/tour/");
 
-    const { error, isPending, data: tours } = useFetch('http://localhost:3040/tours/')
+  return (
+    <div className="main">
+      <div className="side_bar">
+        <Card title>Filters</Card>
+      </div>
 
-
-  return ( 
-
-    <div className='main'>
-
-        <div className="side_bar">
-            
-            <Card title >Filters</Card>
-
-
+      <div className="items">
+        <h3>Tour Packages</h3>
+        <div className="directory_container">
+          {error && <div>{error}</div>}
+          {isPending && <div className="loader"></div>}
+          {tours && <DirectoryItem tours={tours} />}
         </div>
-
-
-
-        <div className="items"> 
-
-            <h3>Tour Packages</h3>
-            <div className="directory_container">
-                { error && <div>{ error }</div> }
-                { isPending && <div className="loader"></div> }
-                { tours && <DirectoryItem tours={tours} /> }
-            </div>
-
-        </div>
-            
-    
+      </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default Tours;
