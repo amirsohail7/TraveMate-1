@@ -5,7 +5,7 @@ import {Rating} from '../rating/Rating';
 
 export function Comment(props) {
   
-  //adter connection with database user can click on like button which 
+  //after connection with database user can click on like button which 
   //will be used here as props to increase like count and showing username and picture
   /* if (!props.comment) {
     return <div/>;

@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   width: 100%;
   margin: 3px 3px 3px;
 `;
-const BlogCard = () => {
+const BlogCard = ({ blogs }) => {
   const date = new Date().toLocaleDateString();
   const onCommentClick = () => alert("You clicked comments");
   const onLikesClick = () => alert("You clicked comments");
@@ -48,17 +48,17 @@ const BlogCard = () => {
   return (
     <StyledRoot>
       <StyledContainer>
-        <CardTemplate
-          cp="/images/chitral2.jpg"
-          link="/userblog"
-          dp="/images/small.jpg"
-          title="Maria B"
-          date={date}
-          description="Chitral is the most beautiful and peaceful district of 
-          Pakistan situated at the North most in Khyber-Pakhtunkhwa province. ...
-           A narrow strip of Wakhan Corridor separates Chitral from Tajikistan in the north. Chitral is famous for its natural beauty, the simplicity of its residents and its unique culture"
-          actions={buttons}
-        />
+        {blogs.map((blog) => (
+          <CardTemplate
+            cp="/images/chitral2.jpg"
+            link="/userblog"
+            dp="/images/small.jpg"
+            title={blog.Title}
+            date={date}
+            description={blog.Description}
+            actions={buttons}
+          />
+        ))}
       </StyledContainer>
     </StyledRoot>
   );

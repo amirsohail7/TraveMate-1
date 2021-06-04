@@ -58,9 +58,18 @@ const UpdateProfile = () => {
             <input
               className={formCSS.form__input}
               type="text"
-              required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className={formCSS.form__item}>
+            <label className={formCSS.form__label}>Email </label>
+            <input
+              className={formCSS.form__input}
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -69,7 +78,6 @@ const UpdateProfile = () => {
             <input
               className={formCSS.form__input}
               type="text"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -90,7 +98,6 @@ const UpdateProfile = () => {
             <label className={formCSS.form__label}>Age </label>
             <input
               className={formCSS.form__input}
-              required
               value={age}
               onChange={(e) => setAge(e.target.value)}
             />
@@ -101,7 +108,6 @@ const UpdateProfile = () => {
             <input
               className={formCSS.form__input}
               type="Date"
-              required
               value={dob}
               onChange={(e) => setDob(e.target.value)}
             />
@@ -112,12 +118,10 @@ const UpdateProfile = () => {
             <input
               className={formCSS.form__input}
               type="Number"
-              required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-
           <button className={formCSS.btn}>Save</button>
         </right>
       </form>

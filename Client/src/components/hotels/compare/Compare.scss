@@ -1,0 +1,107 @@
+.compare{
+    width: 100%;
+    background-color: #FFFFFF;
+    position: fixed;
+    max-width: 1500px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 11px -5px rgba(0,0,0,.2);
+    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    z-index: 3;
+    transition: .3s;
+    animation: compare-bar 1s;
+
+}
+@keyframes compare-bar{ 
+  from 
+      {transform: translate(-50%, 100%);}
+  to 
+      {transform: translate(-50%, calc(100% - 222px));} 
+
+}
+.compare-row{
+    display: flex;
+    list-style: none;
+    margin: 0;
+
+    /* justify-content: space-around; */
+}
+
+
+.compared-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 60px;
+    width: calc(100% / 3);
+    min-width: 172px;
+    font-size: 22px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+.compare-head{
+    background-color: #f6f7f8 
+}
+/* .compare__img{
+    max-height: 100%
+}
+ */
+
+ .facilities{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 60px;
+    width: calc(100% / 3);
+    min-width: 172px;
+    font-size: 11px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;  
+ }
+ .compare-add{
+    position: static;
+    top: 50%;
+    left: 50%; 
+    width:100%; 
+    background-color: #f1f1f1;
+    color: #222;
+    font-size: 12px;
+    padding: 0.4rem 0.9rem;
+    border: 3px solid var(#222);
+    transition: var(all 0.3s linear);
+    cursor: pointer;
+    border-radius: 0px;
+    text-align: center;
+ }
+ .compare-add:hover {
+    background: transparent;
+    color: var(--primaryColor);
+  }
+
+.compare-remove{
+    position: static;
+    top: 50%;
+    left: 50%; 
+    width:100%; 
+    background-color: #f1f1f1;
+    color: #222;
+    font-size: 12px;
+    padding: 0.4rem 0.9rem;
+    border: 3px solid var(#222);
+    transition: var(all 0.3s linear);
+    cursor: pointer;
+    border-radius: 0px;
+    text-align: center;
+}
+.compare-remove:hover {
+    background: transparent;
+    color: var(--primaryColor);
+  }

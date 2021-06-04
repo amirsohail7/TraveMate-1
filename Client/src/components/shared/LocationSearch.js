@@ -7,7 +7,7 @@ import PlacesAutocomplete, {
 import { FaSearchLocation } from "react-icons/fa";
 import "./LocationSearch.css";
 
-export default function App() {
+export default function LocationSearch() {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
     //coodinates is declared here but i bam not using it right now thats why its blur
@@ -21,7 +21,15 @@ export default function App() {
     const latLng = await getLatLng(results[0]); // to convert this string value using google api array of results and then we can
     setAddress(value); // access the first result and get the coordinates back from that the latitude and longitude
     setCoordinates(latLng); //and then we can update ourstate so we can show to the user what they've selected
+    /* console.log(results[0]); */
+    
   };
+
+
+/*  const handleSelect = (address, placeId, suggestion) => {
+  const results = await geocodeByAddress(address);
+
+} */
 
   const onError = (status, clearSuggestions) => {
     console.log("Google Maps API returned error with status: ", status);
@@ -57,7 +65,7 @@ export default function App() {
                 };
 
                 return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                  <div className='suggestions'{...getSuggestionItemProps(suggestion, { style })}>
                     {suggestion.description}
                   </div>
                 );

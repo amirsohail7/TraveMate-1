@@ -35,5 +35,19 @@
   }
 
 /* .suggestions{
-  background-color: blue;
+  font-family: 'Lato', sans-serif;
+  width: 500px;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px black dotted;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  margin-left: 5rem;
+} */
+/* .suggestions{
+  position: "absolute"; //use these properties to stop dropdown from pushing container down
+   z-index: 10;
 } */
