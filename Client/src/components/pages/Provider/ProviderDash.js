@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import css from "./ProviderDash.module.css";
 import { Card } from "react-bootstrap/";
 import useFetch from "../../shared/useFetch";
 import DirectoryItem from "../../shared/DirectoryItem";
+import UpdateProfile from "./Forms/UpdateProfile";
 
 //import { Button } from "react-bootstrap";
 
@@ -11,6 +12,8 @@ import DirectoryItem from "../../shared/DirectoryItem";
 
 const ProviderDash = () => {
   //let ID = sessionStorage.getItem("userType");
+  const [edit_profile, setEdit] = useState(false);
+
   const {
     error,
     isPending,
@@ -31,6 +34,11 @@ const ProviderDash = () => {
     history.push("/AddHotelForm");
   };
 
+  const handle_profile = () => {
+    setEdit(!edit_profile);
+    console.log(edit_profile);
+  };
+
   return (
     <div className={css.Main_container}>
       <header>
@@ -39,7 +47,11 @@ const ProviderDash = () => {
             <h2>Provider Dashboard</h2>
             <h3>Welcome!</h3>
           </div>
-          <button className={css.btnprofile}> Update Profile </button>
+          <button className={css.btnprofile} onClick={handle_profile}>
+            {" "}
+            Update Profile{" "}
+          </button>
+          {edit_profile ? <UpdateProfile /> : null}
         </span>
       </header>
 

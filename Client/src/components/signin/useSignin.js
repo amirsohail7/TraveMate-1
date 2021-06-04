@@ -39,7 +39,7 @@ const useSignin = (callback, validate) => {
         );
         console.log("provider", provider);
 
-        sessionStorage.setItem("userType", "Traveler");
+        sessionStorage.setItem("userType", "Provider");
         sessionStorage.setItem("userID", provider._id);
         sessionStorage.setItem("isLoggedIn", "True");
       });
