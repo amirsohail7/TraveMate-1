@@ -28,7 +28,7 @@ const useSignin = (callback, validate) => {
     console.log("handle submit function triggered!!!!!!"); // just to check if function triggering
     console.log(values); // just to check data recieved from sigup form
 
-    if (values.userType == "Provider") {
+    if (values.userType === "Provider") {
       axios.get("http://localhost:3040/provider/").then((res) => {
         console.log("providers fetched");
         console.log("response", res.data);
@@ -39,13 +39,13 @@ const useSignin = (callback, validate) => {
         );
         console.log("provider", provider);
 
-        sessionStorage.setItem("userType", "Provider");
-        sessionStorage.setItem("userID", provider._id);
-        sessionStorage.setItem("isLoggedIn", "True");
+        localStorage.setItem("userType", "Provider");
+        localStorage.setItem("userID", provider._id);
+        localStorage.setItem("isLoggedIn", true);
       });
     }
 
-    if (values.userType == "Traveler") {
+    if (values.userType === "Traveler") {
       axios.get("http://localhost:3040/traveler/", values).then((res) => {
         console.log("Traveler fetched");
         console.log(res.data);
@@ -57,9 +57,9 @@ const useSignin = (callback, validate) => {
         );
         console.log("travelers", travelers);
 
-        sessionStorage.setItem("userType", "Traveler");
-        sessionStorage.setItem("userID", travelers._id);
-        sessionStorage.setItem("isLoggedIn", "True");
+        localStorage.setItem("userType", "Traveler");
+        localStorage.setItem("userID", travelers._id);
+        localStorage.setItem("isLoggedIn", true);
       });
     }
   };

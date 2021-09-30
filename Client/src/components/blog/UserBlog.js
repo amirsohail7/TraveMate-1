@@ -6,6 +6,8 @@ import styled from "styled-components";
 import UserInfo from "../shared/UserInfo";
 import Article from "./Article";
 import { Comments } from "../Comments/Comments";
+import { useParams } from "react-router-dom";
+import useFetch from "../shared/useFetch";
 
 const StyledContainer = styled.article``;
 
@@ -14,7 +16,15 @@ const BlogContent = styled.article``;
 const CommentContainer = styled.div``;
 
 export default function UserBlog() {
+  const { id } = useParams();
   const date = new Date().toLocaleDateString();
+
+  const {
+    error,
+    isPending,
+    data: blogDetails,
+  } = useFetch(`http://localhost:3040/blog/${id}`);
+  console.log(blogDetails);
 
   return (
     <StyledContainer>
@@ -22,15 +32,15 @@ export default function UserBlog() {
         <UserInfo
           link="/userblog"
           dp="/images/small.jpg"
-          username="Xzzz"
-          bio="asdasd asd asd asd asd asd h"
+          username={blogDetails.author.username}
+          bio="Traveling is therapy"
           action="Follow"
         />
         <Article
-          heading="Travel"
+          heading={blogDetails.Title}
           date={date}
           picture="/images/chitral2.jpg"
-          discription="Chitral is the most beautiful and peaceful district of"
+          discription={blogDetails.Description}
         />
         <CommentContainer>
           <Comments />

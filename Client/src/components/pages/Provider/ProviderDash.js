@@ -39,6 +39,11 @@ const ProviderDash = () => {
     console.log(edit_profile);
   };
 
+  const handle_logout = () => {
+    sessionStorage.clear();
+    history.push("/signin");
+  };
+
   return (
     <div className={css.Main_container}>
       <header>
@@ -50,6 +55,10 @@ const ProviderDash = () => {
           <button className={css.btnprofile} onClick={handle_profile}>
             {" "}
             Update Profile{" "}
+          </button>
+          <button className={css.btnprofile} onClick={handle_logout}>
+            {" "}
+            Logout{" "}
           </button>
           {edit_profile ? <UpdateProfile /> : null}
         </span>

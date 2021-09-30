@@ -18,6 +18,7 @@ const AddHotelForum = () => {
   const [openingTime, setOpeningTime] = useState("");
   const [closingTime, setClosingTime] = useState("");
   const [daysOpen, setdaysOpen] = useState("");
+  const [provider, setProvider] = useState(sessionStorage.getItem("userID"));
 
   const history = useHistory();
 
@@ -37,6 +38,7 @@ const AddHotelForum = () => {
       openingTime,
       closingTime,
       daysOpen,
+      provider,
     };
 
     axios.post("http://localhost:3040/hotel/create_hotel", hotel).then(() => {

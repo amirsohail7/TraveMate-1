@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../shared/Button";
+import NavbarUser from "./NavbarUser";
 
 //using link instead of a tag it dont refresh whole page when clicked and itsbetter when route is taking us
 // to some page/directry inside app, a is better when its taking us to some external site or page
@@ -79,11 +80,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && (
-            <Button buttonStyle="btn--outline" link="/signup">
-              SIGN UP
-            </Button>
-          )}
+          {button && <NavbarUser />}
         </div>
       </nav>
     </>

@@ -4,17 +4,17 @@ import { useHistory } from "react-router-dom";
 
 const SigninSuccess = () => {
   const history = useHistory();
-  var userType = sessionStorage.getItem("userType");
+  var userType = localStorage.getItem("userType");
   console.log(userType);
 
   const redirect = () => {
     console.log("clicked");
     console.log(userType);
-    if (userType == "Provider") {
+    if (userType === "Provider") {
       history.push("/ProviderDash");
       console.log("redirect to Provider dash");
     }
-    if (userType == "Traveler") {
+    if (userType === "Traveler") {
       console.log("redirect to travler dash");
       history.push("/TravelerDash");
     }

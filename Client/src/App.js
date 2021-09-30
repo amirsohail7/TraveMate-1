@@ -20,6 +20,7 @@ import AddTourForum from "./components/pages/Provider/Forms/AddTourForum";
 import ProviderDash from "./components/pages/Provider/ProviderDash";
 import TravelerDash from "./components/pages/Traveler/TravelerDash";
 import Tours from "./components/pages/Tours";
+import ExploreNearby from "./components/explore/ExploreNearby";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route path="/hotels/:slug" exact component={SingleHotel} />
             <Route path="/resturants" component={Resturants} />
             <Route path="/blog" component={BlogHome} />
-            <Route path="/userblog" component={UserBlog} />
+            <Route path="/userblog/:id" component={UserBlog} />
             <Route path="/signup" component={Form} />
             <Route path="/signin" component={Signin} />
             <Route path="/AddRestaurantForum" component={AddRestaurantForum} />
@@ -48,6 +49,7 @@ function App() {
             <Route path="/AddBlogForm" component={AddBlogForm} />
             <Route path="/ProviderDash" component={ProviderDash} />
             <Route path="/TravelerDash" component={TravelerDash} />
+            <Route path="/ExploreNearby" component={ExploreNearby} />
           </Switch>
         </Router>
       </HotelProvider>
