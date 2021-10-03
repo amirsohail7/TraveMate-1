@@ -41,6 +41,7 @@ const useSignin = (callback, validate) => {
 
         localStorage.setItem("userType", "Provider");
         localStorage.setItem("userID", provider._id);
+        localStorage.setItem("Name", provider.username);
         localStorage.setItem("isLoggedIn", true);
       });
     }
@@ -59,6 +60,7 @@ const useSignin = (callback, validate) => {
 
         localStorage.setItem("userType", "Traveler");
         localStorage.setItem("userID", travelers._id);
+        localStorage.setItem("Name", travelers.username);
         localStorage.setItem("isLoggedIn", true);
       });
     }

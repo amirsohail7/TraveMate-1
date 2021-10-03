@@ -1,7 +1,7 @@
 //this is page which opens after user click any card on BlogHome.js here we will have
 //UserInfo of individual who posted a blog and have comment section available to others
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import UserInfo from "../shared/UserInfo";
 import Article from "./Article";

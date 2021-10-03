@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Signin.css";
 import { useHistory } from "react-router-dom";
 
 const SigninSuccess = () => {
+  const [userType, setuserType] = useState("");
+
   const history = useHistory();
-  var userType = localStorage.getItem("userType");
-  console.log(userType);
 
   const redirect = () => {
+    setuserType(localStorage.getItem("userType"));
     console.log("clicked");
     console.log(userType);
     if (userType === "Provider") {
@@ -16,7 +17,7 @@ const SigninSuccess = () => {
     }
     if (userType === "Traveler") {
       console.log("redirect to travler dash");
-      history.push("/TravelerDash");
+      history.push("/Traveler");
     }
   };
 

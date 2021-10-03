@@ -14,7 +14,7 @@ const FormSuccess = () => {
     }
     if (userType === "Traveler") {
       console.log("redirect to travler dash");
-      history.push("/TravelerDash");
+      history.push("/Traveler");
     }
   };
 

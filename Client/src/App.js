@@ -18,9 +18,10 @@ import AddHotelForm from "./components/pages/Provider/Forms/AddHotelForm";
 import AddBlogForm from "./components/pages/Traveler/Forms/AddBlogForm";
 import AddTourForum from "./components/pages/Provider/Forms/AddTourForum";
 import ProviderDash from "./components/pages/Provider/ProviderDash";
-import TravelerDash from "./components/pages/Traveler/TravelerDash";
 import Tours from "./components/pages/Tours";
 import ExploreNearby from "./components/explore/ExploreNearby";
+import Traveler from "./components/Dashboards/Traveler";
+import Provider from "./components/Dashboards/Provider";
 
 function App() {
   return (
@@ -47,8 +48,9 @@ function App() {
             <Route path="/AddTourForum" component={AddTourForum} />
             <Route path="/AddHotelForm" component={AddHotelForm} />
             <Route path="/AddBlogForm" component={AddBlogForm} />
+            <Route path="/Provider" component={Provider} />
             <Route path="/ProviderDash" component={ProviderDash} />
-            <Route path="/TravelerDash" component={TravelerDash} />
+            <Route path="/Traveler" component={Traveler} />
             <Route path="/ExploreNearby" component={ExploreNearby} />
           </Switch>
         </Router>
