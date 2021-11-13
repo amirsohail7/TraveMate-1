@@ -12,6 +12,7 @@ import providerRoutes from "./routes/providerRoutes.js";
 import travelerRoutes from "./routes/travelerRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import path from "path";
+import fileRoutes from "./routes/file-upload-routes.js";
 
 const app = express();
 
@@ -41,6 +42,10 @@ app.use("/booking", bookingRoutes);
 app.use("/blog", blogRoutes);
 app.use("/destination", destinationRoutes);
 app.use("/package", packageRoutes);
+
+//upload routes
+app.use("/uploads", express.static("uploads"));
+app.use("/api", fileRoutes);
 
 // 404 page
 app.use((req, res) => {
