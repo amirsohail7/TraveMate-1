@@ -7,7 +7,7 @@ import formCSS from "./forms.module.css";
 const AddBlogForum = () => {
   const [Title, setTitle] = useState(" ");
   const [createdAt, setCreatedAt] = useState(" ");
-  const [author, setAuthor] = useState(sessionStorage.getItem("userID"));
+  const author = localStorage.getItem("userID");
   const [Description, setDescription] = useState(" ");
 
   const history = useHistory();
