@@ -21,13 +21,13 @@ function Info() {
           <Row>
             <Digit>32</Digit>
             <InfoContainer>
-              <Title>Projects</Title>
-              <SubTitle>8 this month</SubTitle>
+              <Title>Bookings</Title>
+              <SubTitle>23 this month</SubTitle>
             </InfoContainer>
           </Row>
           <Row justify>
-            <Badge content="mobile app" glow />
-            <Badge content="branding" glow />
+            <Badge content="Hotel" glow />
+            <Badge content="Dining" glow />
           </Row>
         </CardContent>
       </Card>
@@ -36,7 +36,7 @@ function Info() {
 }
 
 const InfoCard = styled.div`
-  height: 100%;
+  height: 115%;
   width: 14rem;
   background-color: white;
   border-radius: 1rem;

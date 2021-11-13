@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import AvatarImage from "../assets/avatarImage2.jpg";
-import AvatarImage2 from "../assets/avatarImage3.jpg";
+import AvatarImage from "../assets/room-6.jpeg";
+import AvatarImage2 from "../assets/room-4.jpeg";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
 
 function Projects() {
@@ -12,8 +12,8 @@ function Projects() {
           <img src={AvatarImage} alt="" />
         </Avatar>
         <Detail>
-          <Title>Logo design for Bakery</Title>
-          <SubTitle>1 day remaining</SubTitle>
+          <Title>Marriot Islamabad</Title>
+          <SubTitle>Rooms,Luxury Suits,Dining</SubTitle>
         </Detail>
       </Project>
       <Project>
@@ -21,11 +21,11 @@ function Projects() {
           <img src={AvatarImage2} alt="" />
         </Avatar>
         <Detail>
-          <Title>Personal branding project</Title>
-          <SubTitle>5 days remaining</SubTitle>
+          <Title>Marriot Skardu</Title>
+          <SubTitle>Rooms,Luxury Suits,Dining</SubTitle>
         </Detail>
       </Project>
-      <AllProjects>See all projects</AllProjects>
+      <AllProjects>See all Services</AllProjects>
     </YourProjects>
   );
 }

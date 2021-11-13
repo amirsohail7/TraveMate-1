@@ -15,20 +15,19 @@ function ProjectRecommendation() {
             </Avatar>
             <Info>
               <InfoName>Thomas Martin</InfoName>
-              <InfoUpdate>Updated 10m ago</InfoUpdate>
+              <InfoUpdate>10m ago</InfoUpdate>
             </Info>
           </InfoContainer>
           <Badge content="Design" />
         </Detail>
         <Title>
-          Need a designer to form branding essentials for my business.
+          Marriot : Delux Room
         </Title>
         <ProjectInfo>
-          Looking for a talented brand designer to create all the branding
-          materials for my new startup.
+          Date : 21 - 24 October, 2021
         </ProjectInfo>
         <PriceContainer>
-          <Price>$8700/month</Price>
+          <Price>PKR 7000/Night</Price>
           <Badge content="Full Time" clean />
         </PriceContainer>
       </CardContent>

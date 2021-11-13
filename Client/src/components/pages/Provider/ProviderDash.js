@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import css from "./ProviderDash.module.css";
 import { Card } from "react-bootstrap/";
 import useFetch from "../../shared/useFetch";
-import DirectoryItem from "../../shared/DirectoryItem";
+import DirectoryItem from "../../Tours/DirectoryItem";
 import UpdateProfile from "./Forms/UpdateProfile";
 
 //import { Button } from "react-bootstrap";

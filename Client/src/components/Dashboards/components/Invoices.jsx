@@ -15,13 +15,13 @@ function Invoices() {
               <img src={AvatarImage} alt="" />
             </Avatar>
             <TextContainer>
-              <Title>Alexander Williams</Title>
-              <SubTitle>ABC Holdings</SubTitle>
+              <Title>Jhon Dean</Title>
+              <SubTitle>Marriot Skardu Luxury Suit 2 Days</SubTitle>
             </TextContainer>
           </Info>
           <Container>
             <Badge content="Paid" paid />
-            <Price>PKR 5,000</Price>
+            <Price>PKR 14,000</Price>
           </Container>
         </Invoice>
         <Invoice>
@@ -31,12 +31,12 @@ function Invoices() {
             </Avatar>
             <TextContainer>
               <Title>John Philips</Title>
-              <SubTitle>Inchor Associates</SubTitle>
+              <SubTitle>Marriot Islamabad Room 1 Day</SubTitle>
             </TextContainer>
           </Info>
           <Container>
             <Badge content="Pending" late />
-            <Price>PKR 1,200</Price>
+            <Price>PKR 7,000</Price>
           </Container>
         </Invoice>
       </CardContent>
