@@ -18,11 +18,13 @@ const AddRestaurantForum = () => {
   const [openingTime, setOpeningTime] = useState("");
   const [closingTime, setClosingTime] = useState("");
   const [daysOpen, setdaysOpen] = useState("");
+  const provider = localStorage.getItem("userID");
 
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(provider);
     const restaurant = {
       name,
       city,
@@ -37,10 +39,11 @@ const AddRestaurantForum = () => {
       openingTime,
       closingTime,
       daysOpen,
+      provider,
     };
 
     axios
-      .post("http://localhost:3040/restaurant/create_restaurant", restaurant)
+      .post("http://localhost:3040/restaurant/create", restaurant)
       .then(() => {
         // history.push('/')
         console.log("data is posted");

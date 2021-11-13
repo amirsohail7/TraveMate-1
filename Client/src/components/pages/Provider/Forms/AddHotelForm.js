@@ -18,7 +18,7 @@ const AddHotelForum = () => {
   const [openingTime, setOpeningTime] = useState("");
   const [closingTime, setClosingTime] = useState("");
   const [daysOpen, setdaysOpen] = useState("");
-  const [provider, setProvider] = useState(sessionStorage.getItem("userID"));
+  const provider = localStorage.getItem("userID");
 
   const history = useHistory();
 
