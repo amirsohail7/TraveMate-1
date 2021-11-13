@@ -45,6 +45,13 @@ function Navbar() {
                 Home
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link to="/tours" className="nav-links" onClick={closeMobileMenu}>
+                Tours
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link
                 to="/hotels"
