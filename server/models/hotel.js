@@ -1,22 +1,21 @@
 import mongoose from "mongoose";
 
 const hotelSchema = new mongoose.Schema({
-  provider: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Provider",
-    required: true,
-  },
-
   name: {
     type: String,
     required: true,
   },
-  city: {
+  priceLevel: {
     type: String,
     required: true,
   },
 
-  address: {
+  priceRange: {
+    type: String,
+    required: true,
+  },
+
+  hotelClass: {
     type: String,
     required: true,
   },
@@ -26,48 +25,65 @@ const hotelSchema = new mongoose.Schema({
     required: true,
   },
 
-  description: {
+  address: {
     type: String,
     required: true,
   },
+
+  email: {
+    type: String,
+    required: true,
+  },
+
+  amenities: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+
+  latitude: {
+    type: String,
+    required: true,
+  },
+
+  longitude: {
+    type: String,
+    required: true,
+  },
+
+  website: {
+    type: String,
+  },
+
+  reviewsCount: {
+    type: Number,
+    default: 0,
+  },
+
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 
   rating: {
-    type: String,
-    required: true,
+    type: Number,
+    default: 0,
   },
 
-  category: {
-    type: String,
-    required: true,
+  provider: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Provider",
+    //required: true,
   },
 
-  priceRange: {
-    type: String,
-    required: true,
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
   },
-  menu: {
-    type: String,
-  },
-
-  openingTime: {
-    type: String,
-    required: true,
-  },
-
-  closingTime: {
-    type: String,
-    required: true,
-  },
-
-  daysOpen: {
-    type: String,
-    required: true,
-  },
-  facilities: {
-    type: Array,
-    required: true,
-  },
-  //timestamps: true
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);

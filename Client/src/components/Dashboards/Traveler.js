@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/TravelerComponents/Sidebar";
 import TravelerContent from "./components/TravelerComponents/TravelerContent";
 
 const Traveler = () => {

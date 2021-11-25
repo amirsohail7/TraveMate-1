@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Button } from "../shared/Button";
 import "./Navbar.css";
+import avatar from "../../images/Avatar.png";
 
 const NavbarUser = () => {
   const [user, setUser] = useState();
@@ -15,13 +15,14 @@ const NavbarUser = () => {
     }
     setInterval(() => {
       const userString = localStorage.getItem("isLoggedIn");
-      //const user = JSON.parse(userString);
-      setUser(userString);
+      const user = JSON.parse(userString);
+      setUser(user);
     }, []);
-  }, 5000);
+  }, 50000);
 
   const logout = () => {
-    localStorage.setItem("isLoggedIn", false);
+    localStorage.removeItem("isLoggedIn");
+    setUser(false);
     console.log("Log OUT clicked");
   };
 
@@ -42,6 +43,7 @@ const NavbarUser = () => {
         <Button buttonStyle="btn--outline" link="/" onClick={logout}>
           LOGOUT
         </Button>
+        <img src={avatar} alt="avatar" className="avatar" />
       </div>
     );
   }

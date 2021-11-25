@@ -33,7 +33,10 @@ export async function multipleFileUpload(req, res, next) {
       files: filesArray,
     });
     await multipleFiles.save();
-    res.status(201).send("Files Uploaded Successfully");
+    res.status(201);
+    res.setHeader("Content-Type", "application/json");
+    res.json(multipleFiles);
+    console.log("images saved");
   } catch (error) {
     res.status(400).send(error.message);
   }

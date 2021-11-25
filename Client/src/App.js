@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/home/Navbar";
 import "./App.css";
-import Home from "./components/pages/Home";
+import Home from "./components/home/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Hotels from "./components/hotels/pages/Hotels";
 import SingleHotel from "./components/hotels/pages/SingleHotel";
@@ -13,17 +13,17 @@ import Form from "./components/signup/Form";
 import UserBlog from "./components/blog/UserBlog";
 import { HotelProvider } from "./context";
 import "semantic-ui-css/semantic.min.css";
-import AddRestaurantForum from "./components/pages/Provider/Forms/AddRestaurantForum";
-import AddHotelForm from "./components/pages/Provider/Forms/AddHotelForm";
-import AddBlogForm from "./components/pages/Traveler/Forms/AddBlogForm";
-import AddTourForum from "./components/pages/Provider/Forms/AddTourForum";
-import ProviderDash from "./components/pages/Provider/ProviderDash";
+import AddRestaurantForum from "./components/Dashboards/components/ProviderComponents/Forms/AddRestaurantForum";
+import AddHotelForm from "./components/Dashboards/components/ProviderComponents/Forms/AddHotelForm";
+import AddBlogForm from "./components/Dashboards/components/TravelerComponents/Forms/AddBlogForm";
+import AddTourForum from "./components/Dashboards/components/ProviderComponents/Forms/AddTourForum";
 import Tours from "./components/Tours/Tours";
 import ExploreNearby from "./components/explore/ExploreNearby";
 import Traveler from "./components/Dashboards/Traveler";
 import Provider from "./components/Dashboards/Provider";
 import Tourdetails from "./components/Tours/TourDetails";
 import RestaurantDetails from "./Restaurants/RestaurantDetails";
+import test from "./components/test";
 
 function App() {
   return (
@@ -57,9 +57,9 @@ function App() {
             <Route path="/AddHotelForm" component={AddHotelForm} />
             <Route path="/AddBlogForm" component={AddBlogForm} />
             <Route path="/Provider" component={Provider} />
-            <Route path="/ProviderDash" component={ProviderDash} />
             <Route path="/Traveler" component={Traveler} />
             <Route path="/ExploreNearby" component={ExploreNearby} />
+            <Route path="/test" component={test} />
           </Switch>
         </Router>
       </HotelProvider>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Sidebar from "./components/Sidebar";
-import MainContent from "./components/MainContent";
+import Sidebar from "./components/ProviderComponents/Sidebar";
+import MainContent from "./components/ProviderComponents/MainContent";
 
 const Provider = () => {
   return (

@@ -12,7 +12,7 @@ const SigninSuccess = () => {
     console.log("clicked");
     console.log(userType);
     if (userType === "Provider") {
-      history.push("/ProviderDash");
+      history.push("/Provider");
       console.log("redirect to Provider dash");
     }
     if (userType === "Traveler") {

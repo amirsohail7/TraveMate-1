@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { themeColor } from "../utils";
+import { themeColor } from "../../utils";
 function Badge({
   content,
   clean = false,

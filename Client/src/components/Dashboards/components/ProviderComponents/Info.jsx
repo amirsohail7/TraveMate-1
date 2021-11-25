@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
-import { cardShadow, hoverEffect, themeColor } from "../utils";
+import { cardShadow, hoverEffect, themeColor } from "../../utils";
 function Info() {
   return (
     <InfoCard>

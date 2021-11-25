@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../Navbar";
+import Navbar from "./Navbar";
 import Explore from "./Explore";
 import AddBlog from "./AddBlog";
-import JoinSlack from "../JoinSlack";
-import ProjectRecommendation from "../ProjectRecommendation";
+import JoinSlack from "./JoinSlack";
+import ProjectRecommendation from "./ProjectRecommendation";
 import Bookings from "./Bookings";
-import Invoices from "../Invoices";
+import Invoices from "./Invoices";
 
 function TravelerContent() {
   return (

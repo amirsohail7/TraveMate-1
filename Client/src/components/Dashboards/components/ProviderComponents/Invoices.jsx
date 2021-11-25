@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
-import AvatarImage from "../assets/avatarImage5.jpg";
-import AvatarImage2 from "../assets/avatarImage6.jpg";
-import { cardShadow, hoverEffect } from "../utils";
+import AvatarImage from "../../assets/avatarImage5.jpg";
+import AvatarImage2 from "../../assets/avatarImage6.jpg";
+import { cardShadow, hoverEffect } from "../../utils";
 
 function Invoices() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FaSlack } from "react-icons/fa";
-import { darkThemeColor, hoverEffect, themeColor } from "../utils";
+import { darkThemeColor, hoverEffect, themeColor } from "../../utils";
 function JoinSlack() {
   return (
     <JoinChannel>

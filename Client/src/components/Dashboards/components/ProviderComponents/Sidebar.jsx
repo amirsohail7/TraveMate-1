@@ -4,8 +4,8 @@ import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
 import Badge from "./Badge";
-import AvatarImage from "../assets/R.png";
-import { darkThemeColor } from "../utils";
+import AvatarImage from "../../assets/R.png";
+import { darkThemeColor } from "../../utils";
 function Sidebar() {
   return (
     <Container>
@@ -96,7 +96,7 @@ const Link = styled.li`
   margin-left: 25%;
   margin-bottom: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   color: #e4e4e4;
   cursor: pointer;
   h3 {
@@ -104,7 +104,7 @@ const Link = styled.li`
   }
   svg {
     font-size: 1.1rem;
-    margin-top: 13%;
+    margin-top: 10%;
   }
 `;
 

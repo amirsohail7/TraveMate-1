@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import AvatarImage from "../assets/room-6.jpeg";
-import AvatarImage2 from "../assets/room-4.jpeg";
-import { cardShadow, hoverEffect, themeColor } from "../utils";
+import AvatarImage from "../../assets/room-6.jpeg";
+import AvatarImage2 from "../../assets/room-4.jpeg";
+import { cardShadow, hoverEffect, themeColor } from "../../utils";
 
 function Projects() {
   return (

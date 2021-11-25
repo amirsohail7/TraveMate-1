@@ -5,9 +5,18 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  city: {
+  priceLevel: {
     type: String,
+    required: true,
+  },
+
+  rating: {
+    type: Number,
+    default: 0,
+  },
+
+  phone: {
+    type: Number,
     required: true,
   },
 
@@ -16,57 +25,52 @@ const restaurantSchema = new mongoose.Schema({
     required: true,
   },
 
-  phone: {
-    type: Number,
-    required: true,
-  },
+  cuisine: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 
   email: {
     type: String,
-    required: true,
   },
 
-  description: {
-    type: String,
-    required: true,
-  },
-
-  rating: {
+  latitude: {
     type: String,
     required: true,
   },
 
-  category: {
+  longitude: {
     type: String,
     required: true,
   },
 
-  priceRange: {
-    type: String,
-    required: true,
-  },
-  menu: {
+  website: {
     type: String,
   },
 
-  openingTime: {
-    type: String,
-    required: true,
+  reviewsCount: {
+    type: Number,
+    default: 0,
   },
 
-  closingTime: {
-    type: String,
-    required: true,
-  },
-
-  daysOpen: {
-    type: String,
-    required: true,
-  },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 
   provider: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Provider",
+  },
+
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
   },
 });
 
