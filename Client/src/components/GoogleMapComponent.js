@@ -11,14 +11,7 @@ class GoogleMapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cords: [
-        { latitude: 51.507351, longitude: -0.127758 },
-        { latitude: 31.046051, longitude: 34.851612 },
-        { latitude: 51.165691, longitude: 10.451526 },
-        { latitude: 52.215933, longitude: 19.134422 },
-        { latitude: 50.0874654, longitude: 14.4212535 },
-        { latitude: 7.5554942, longitude: 80.7137847 },
-      ],
+      cords: [{ latitude: 33.65022340794778, longitude: 73.15564750343597 }],
     };
   }
 
@@ -43,10 +36,10 @@ class GoogleMapComponent extends React.Component {
       <Map
         google={this.props.google}
         style={customizeMap}
-        zoom={6}
+        zoom={14}
         initialCenter={{
-          lat: 9.96233,
-          lng: 49.80404,
+          lat: 33.65022340794778,
+          lng: 73.15564750343597,
         }}
       >
         {this.drawMarker()}

@@ -11,6 +11,7 @@ import packageRoutes from "./routes/packageRoutes.js";
 import providerRoutes from "./routes/providerRoutes.js";
 import travelerRoutes from "./routes/travelerRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 import path from "path";
 import fileRoutes from "./routes/file-upload-routes.js";
 
@@ -42,7 +43,7 @@ app.use("/booking", bookingRoutes);
 app.use("/blog", blogRoutes);
 app.use("/destination", destinationRoutes);
 app.use("/package", packageRoutes);
-
+app.use("/review", reviewRoutes);
 //upload routes
 app.use("/uploads", express.static("uploads"));
 app.use("/api", fileRoutes);

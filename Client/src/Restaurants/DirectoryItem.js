@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./DirectoryItem.css";
+import { Rating } from "@mui/material";
 
 const DirectoryItem = ({ restaurants }) => {
   return (
@@ -19,7 +20,7 @@ const DirectoryItem = ({ restaurants }) => {
             </div>
             <div className="side">
               <p>{restaurant.priceLevel}</p>
-              <p>Rating {restaurant.rating}</p>
+              <Rating name="read-only" value={restaurant.rating} readOnly />
             </div>
           </Link>
         </div>

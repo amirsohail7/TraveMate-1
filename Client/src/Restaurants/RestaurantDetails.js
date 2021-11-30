@@ -9,17 +9,18 @@ import EmailIcon from "@mui/icons-material/Email";
 import PinDropIcon from "@mui/icons-material/PinDrop";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import WriteReview from "../components/WriteReview";
+import ServiceReview from "../components/ServiceReview";
 
 const RestaurantDetails = () => {
   const { id } = useParams();
-  const [restaurantDetail, setTourDetail] = useState(null);
+  const [restaurantDetail, setRestaurantDetail] = useState(null);
   const [error, setError] = React.useState(null);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3040/restaurant/${id}`)
       .then((response) => {
-        setTourDetail(response.data);
+        setRestaurantDetail(response.data);
         console.log(response.data);
       })
       .catch((error) => {
@@ -79,11 +80,16 @@ const RestaurantDetails = () => {
               </div>
 
               <div className="map-container">
-                <GoogleMapComponent />
+                <GoogleMapComponent
+                  lng={restaurant.longitude}
+                  lat={restaurant.latitude}
+                />
               </div>
             </div>
             <div className="Reviews">
-              <WriteReview service="345345" serviceType="Hotel" />
+              <WriteReview service={restaurant._id} serviceType="Restaurant" />
+              <h2>Traveler Feedback</h2>
+              <ServiceReview Reviews={restaurant.reviews} />
             </div>
           </div>
         </div>
