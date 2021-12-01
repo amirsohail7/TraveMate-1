@@ -20,6 +20,7 @@ import AddTourForum from "./components/pages/Provider/Forms/AddTourForum";
 import ProviderDash from "./components/pages/Provider/ProviderDash";
 import TravelerDash from "./components/pages/Traveler/TravelerDash";
 import Tours from "./components/pages/Tours";
+import Chatbot from './components/chatbot/Chatbot/Chatbot'
 
 function App() {
   return (
@@ -27,14 +28,11 @@ function App() {
       <HotelProvider>
         <Router>
           <Navbar />
+
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/tours" component={Tours} />
-            <Route
-              path="/destination/:results"
-              exact
-              component={DestinationHome}
-            />
+            <Route path="/destinations" component ={DestinationHome}/>
             <Route path="/hotels" component={Hotels} />
             <Route path="/hotels/:slug" exact component={SingleHotel} />
             <Route path="/resturants" component={Resturants} />
@@ -48,6 +46,7 @@ function App() {
             <Route path="/AddBlogForm" component={AddBlogForm} />
             <Route path="/ProviderDash" component={ProviderDash} />
             <Route path="/TravelerDash" component={TravelerDash} />
+            <Route path="/chatbot" component={Chatbot}/>
           </Switch>
         </Router>
       </HotelProvider>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import Directoryitem from '../shared/DirectoryItem';
-
+/* import Chatbot from "../chatbot/Chatbot/Chatbot" */
 //fetch restaurants from data base and store in const x useeffect to fetch
 
 const Restaurants = () => {

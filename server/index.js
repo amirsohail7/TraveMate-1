@@ -11,6 +11,8 @@ import packageRoutes from "./routes/packageRoutes.js";
 import providerRoutes from "./routes/providerRoutes.js";
 import travelerRoutes from "./routes/travelerRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
+import dialogflow from "./routes/dialogflowRoutes.js";
+/* import hotelRec from "./routes/hotelRecRoutes.js" */
 import path from "path";
 
 const app = express();
@@ -41,7 +43,8 @@ app.use("/booking", bookingRoutes);
 app.use("/blog", blogRoutes);
 app.use("/destination", destinationRoutes);
 app.use("/package", packageRoutes);
-
+app.use("/api/dialogflow",dialogflow);
+/* app.use("/hotelRec",hotelRec); */
 // 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });

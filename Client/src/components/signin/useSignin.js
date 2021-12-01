@@ -60,6 +60,11 @@ const useSignin = (callback, validate) => {
         sessionStorage.setItem("userType", "Traveler");
         sessionStorage.setItem("userID", travelers._id);
         sessionStorage.setItem("isLoggedIn", "True");
+        
+        /* localStorage.setItem("userType", "Traveler");
+        localStorage.setItem("userID", travelers._id);
+        localStorage.setItem("isLoggedIn", "True");
+        localStorage.setItem("user_id", 2); */
       });
     }
   };

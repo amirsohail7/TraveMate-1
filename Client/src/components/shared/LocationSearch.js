@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 
 import { FaSearchLocation } from "react-icons/fa";
 import "./LocationSearch.css";
+import { Link } from "react-router-dom";
 
 export default function LocationSearch() {
   const [address, setAddress] = React.useState("");
@@ -22,11 +23,9 @@ export default function LocationSearch() {
     setAddress(value); // access the first result and get the coordinates back from that the latitude and longitude
     setCoordinates(latLng); //and then we can update ourstate so we can show to the user what they've selected
     /* console.log(results[0]); */
-    
   };
 
-
-/*  const handleSelect = (address, placeId, suggestion) => {
+  /*  const handleSelect = (address, placeId, suggestion) => {
   const results = await geocodeByAddress(address);
 
 } */
@@ -38,11 +37,13 @@ export default function LocationSearch() {
 
   return (
     <div className="locationsearch">
-      <PlacesAutocomplete
+      <PlacesAutocomplete id="autocomplete"
         value={address} //this is what user typed in location search bar
         onChange={setAddress} //when typing location setAddress function is being called and state is being updated
         onSelect={handleSelect} //when user select any loctaion only then this handleSelect function is called
         onError={onError}
+        shouldFetchSuggestions={address.length > 1}
+        searchOptions={{componentRestrictions: { country: ['pak'] }, types: ['(cities)']}}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="locationsearch-container">
@@ -60,13 +61,17 @@ export default function LocationSearch() {
 
               {suggestions.map((suggestion) => {
                 const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff",  //inline stylying is used here, proper styling to be done later
-                  
+                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff", //inline stylying is used here, proper styling to be done later
                 };
 
                 return (
-                  <div className='suggestions'{...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
+                  <div
+                    className="suggestions"
+                    {...getSuggestionItemProps(suggestion, { style })}
+                  >
+                    <Link to="../destinations/DestinationHome">{suggestion.description}</Link>
+                    {/* we are using link tag to open destination page, 
+                    make it dyanimc after page is designed*/}
                   </div>
                 );
               })}
