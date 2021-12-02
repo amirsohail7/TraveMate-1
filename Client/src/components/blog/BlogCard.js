@@ -51,7 +51,7 @@ const BlogCard = ({ blogs }) => {
         {blogs.map((blog) => (
           <CardTemplate
             cp="/images/chitral2.jpg"
-            link="/userblog"
+            link={`/userblog/${blog._id}`}
             dp="/images/small.jpg"
             title={blog.Title}
             date={date}

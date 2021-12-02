@@ -1,79 +1,90 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const hotelSchema = new mongoose.Schema({
-
- provider: {
-    type:mongoose.Schema.Types.ObjectId,
-    ref: 'Provider',
-    required: true,
-
- },
-  
- Name: {
+  name: {
     type: String,
     required: true,
- },
- city:{
-   type:String,
-   required: true,
- },
- 
- address:{
-   type:String,
-   required: true,
- },
-
- phone:{
-   type:Number,
-   required: true,
- },
-
- description:{
-   type:String,
-   required: true,
- },
-
- rating:{
-    type:String,
-    required: true,
- },
- 
- category: {
+  },
+  priceLevel: {
     type: String,
     required: true,
- },
- 
- priceRange: {
-   type: String,
-   required: true,
-},
- menu: {
-    type:String,
- },
+  },
 
- openingTime:{
-   type:String,
-   required: true,
- },
-
- closingTime:{
-   type:String,
-   required: true,
- },
-
- daysOpen:{
-   type:String,
-   required: true,
- },
- facilities: {
-    type: Array,
+  priceRange: {
+    type: String,
     required: true,
- }
- //timestamps: true
+  },
 
+  hotelClass: {
+    type: String,
+    required: true,
+  },
 
+  phone: {
+    type: Number,
+    required: true,
+  },
 
+  address: {
+    type: String,
+    required: true,
+  },
+
+  email: {
+    type: String,
+    required: true,
+  },
+
+  amenities: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+
+  latitude: {
+    type: String,
+    required: true,
+  },
+
+  longitude: {
+    type: String,
+    required: true,
+  },
+
+  website: {
+    type: String,
+  },
+
+  reviewsCount: {
+    type: Number,
+    default: 0,
+  },
+
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+
+  rating: {
+    type: Number,
+    default: 0,
+  },
+
+  provider: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Provider",
+    //required: true,
+  },
+
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
+  },
 });
 
-const Hotel = mongoose.model("Hotel", hotelSchema)
+const Hotel = mongoose.model("Hotel", hotelSchema);
 export default Hotel;

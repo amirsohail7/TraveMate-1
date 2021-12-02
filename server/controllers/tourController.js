@@ -1,80 +1,81 @@
-import Tour from '../models/tour.js';
+import Tour from "../models/tour.js";
 
 //GET Routes
 
-export const all_tours = (req,res) => {
+export const all_tours = (req, res) => {
   Tour.find()
-    .then(result => {
+    .then((result) => {
       res.send(result);
     })
-    .catch(err =>{
+    .catch((err) => {
       console.log(err);
-    })
-}
+    });
+};
 
-export const all_tours_detailed = (req,res) => {
-  Tour.find().populate('provider')
-    .then(result => {
+export const all_tours_detailed = (req, res) => {
+  Tour.find()
+    .populate("provider")
+    .then((result) => {
       res.send(result);
     })
-    .catch(err =>{
+    .catch((err) => {
       console.log(err);
-    })
-}
+    });
+};
 
-export const specific_tour = (req,res) => {
-  Tour.find({_id:req.params.id}).populate('provider')
-    .then(result => {
+export const specific_tour = (req, res) => {
+  Tour.find({ _id: req.params.id })
+    .populate("provider")
+    .populate("photos")
+    .then((result) => {
       res.send(result);
     })
-    .catch(err =>{
+    .catch((err) => {
       console.log(err);
-    })
-}
-
-
+    });
+};
 
 //POST ROUTES
 
-export const create_tour = (req,res,next) => {
+export const create_tour = (req, res, next) => {
   Tour.create(req.body)
-  .then((tour) =>{
-    console.log('Tour has been added',tour);
-    res.statusCode=200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(tour);
-  },(err)=>next(err))
-  .catch((err)=>next(err));
-}
+    .then(
+      (tour) => {
+        console.log("Tour has been added", tour);
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.json(tour);
+      },
+      (err) => next(err)
+    )
+    .catch((err) => next(err));
+};
 
 //PUT ROUTES
 
 export const add_provider = (req, res, next) => {
-  Tour.findOneAndUpdate({_id:req.params.tid},{provider:req.params.pid},
-    function(error,result){
-      if(error){
-        return next(error)
+  Tour.findOneAndUpdate(
+    { _id: req.params.tid },
+    { provider: req.params.pid },
+    function (error, result) {
+      if (error) {
+        return next(error);
       }
-      res.json(result)
-    })
-  
-}
+      res.json(result);
+    }
+  );
+};
 
 //DELETE ROUTES
 
 export const delete_tour = (req, res, next) => {
-  Tour.deleteOne({_id:req.params.id},function(error,results){
-      if(error){
-          return next(error)
-      }
-      res.json(results);
-  })
-}
-
-
-
-
-
+  Tour.deleteOne({ _id: req.params.id }, function (error, results) {
+    if (error) {
+      return next(error);
+    }
+    res.json(results);
+  });
+};
 
 /// code below used to be in index.js // adjust here
 

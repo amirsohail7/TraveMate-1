@@ -1,80 +1,78 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const restaurantSchema = new mongoose.Schema({
- name:{
-   type:String,
-   required: true,
- },
-
- city:{
-   type:String,
-   required: true,
- },
- 
- address:{
-   type:String,
-   required: true,
- },
-
- phone:{
-   type:Number,
-   required: true,
- },
-
- email:{
-   type:String,
-   required: true,
- },
-
- description:{
-   type:String,
-   required: true,
- },
-
- rating:{
-    type:String,
-    required: true,
- },
- 
- category: {
+  name: {
     type: String,
     required: true,
- },
- 
- priceRange: {
-   type: String,
-   required: true,
-},
- menu: {
-    type:String,
+  },
+  priceLevel: {
+    type: String,
+    required: true,
+  },
 
- },
+  rating: {
+    type: Number,
+    default: 0,
+  },
 
- openingTime:{
-   type:String,
-   required: true,
- },
+  phone: {
+    type: Number,
+    required: true,
+  },
 
- closingTime:{
-   type:String,
-   required: true,
- },
+  address: {
+    type: String,
+    required: true,
+  },
 
- daysOpen:{
-   type:String,
-   required: true,
- },
+  cuisine: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 
- provider:{
-   type:mongoose.Schema.Types.ObjectId,
-   ref: 'Provider',
- }
+  email: {
+    type: String,
+  },
 
+  latitude: {
+    type: String,
+    required: true,
+  },
 
+  longitude: {
+    type: String,
+    required: true,
+  },
 
+  website: {
+    type: String,
+  },
 
+  reviewsCount: {
+    type: Number,
+    default: 0,
+  },
 
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+
+  provider: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Provider",
+  },
+
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
+  },
 });
 
-const Restaurant = mongoose.model("Restaurant", restaurantSchema)
+const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 export default Restaurant;

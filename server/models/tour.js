@@ -35,6 +35,11 @@ const tourSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
+  },
 
   //timestamps: true
 });

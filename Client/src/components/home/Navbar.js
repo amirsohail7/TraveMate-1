@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AccountMenu from "../shared/AccountMenu";
 import { Button } from "../shared/Button";
+import NavbarUser from "./NavbarUser";
 
 //using link instead of a tag it dont refresh whole page when clicked and itsbetter when route is taking us
 // to some page/directry inside app, a is better when its taking us to some external site or page
@@ -45,6 +46,13 @@ function Navbar() {
                 Home
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link to="/tours" className="nav-links" onClick={closeMobileMenu}>
+                Tours
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link
                 to="/hotels"
@@ -79,16 +87,6 @@ function Navbar() {
                 here carousal can be used for the view */}
 
             <li className="nav-item">
-              <Link
-                to="/resturants"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Things To Do
-              </Link>
-            </li>
-
-            <li className="nav-item">
               <Link to="/blog" className="nav-links" onClick={closeMobileMenu}>
                 Blog
               </Link>
@@ -104,13 +102,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && (
-            <Button buttonStyle="btn--outline" link="/signin">
-              SIGN IN
-            </Button>
-          )}
-
-          <AccountMenu />
+          {button && <NavbarUser />}
         </div>
       </nav>
     </>

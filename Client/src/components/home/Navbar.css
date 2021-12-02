@@ -46,7 +46,7 @@
 }
 
 .nav-item {
-  height: 80px;
+  height: 50px;
 }
 
 .nav-links {
@@ -59,8 +59,7 @@
 }
 
 .nav-links:hover {
-  border-bottom: 4px solid #fff;
-  transition: all 0.2s ease-out;
+  border-bottom: 2px solid #fff;
 }
 
 .fa-bars {
@@ -73,6 +72,13 @@
 
 .menu-icon {
   display: none;
+}
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 960px) {

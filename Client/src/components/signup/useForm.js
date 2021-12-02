@@ -43,9 +43,9 @@ const useForm = (callback, validate) => {
           console.log("Provider data is posted");
           console.log(res.data);
 
-          sessionStorage.setItem("userType", "Provider");
-          sessionStorage.setItem("userID", res.data._id);
-          sessionStorage.setItem("isLoggedIn", "True");
+          localStorage.setItem("userType", "Provider");
+          localStorage.setItem("userID", res.data._id);
+          localStorage.setItem("isLoggedIn", true);
         });
     }
 
@@ -56,9 +56,9 @@ const useForm = (callback, validate) => {
           console.log("Traveler data is posted");
           console.log(res.data);
 
-          sessionStorage.setItem("userType", "Traveler");
-          sessionStorage.setItem("userID", res.data._id);
-          sessionStorage.setItem("isLoggedIn", "True");
+          localStorage.setItem("userType", "Traveler");
+          localStorage.setItem("userID", res.data._id);
+          localStorage.setItem("isLoggedIn", true);
         });
     }
   };
