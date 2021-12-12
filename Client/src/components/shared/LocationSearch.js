@@ -69,7 +69,7 @@ export default function LocationSearch() {
                     className="suggestions"
                     {...getSuggestionItemProps(suggestion, { style })}
                   >
-                    <Link to="../destinations/DestinationHome">{suggestion.description}</Link>
+                    <Link to="./destination">{suggestion.description}</Link>
                     {/* we are using link tag to open destination page, 
                     make it dyanimc after page is designed*/}
                   </div>

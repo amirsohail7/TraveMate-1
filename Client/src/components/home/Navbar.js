@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AccountMenu from "../shared/AccountMenu";
 import { Button } from "../shared/Button";
-import NavbarUser from "./NavbarUser";
 
 //using link instead of a tag it dont refresh whole page when clicked and itsbetter when route is taking us
 // to some page/directry inside app, a is better when its taking us to some external site or page
@@ -71,24 +70,15 @@ function Navbar() {
                 Resturants
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link
-                to="/chatbot"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Chatbot
+              <Link to="/blogs" className="nav-links" onClick={closeMobileMenu}>
+                Blog
               </Link>
             </li>
-
-            {/* we can use thing To Do tab to open a chat bot feature which interact with user, 
-                ask their intrests,hobbies and suggests
-                them destination according to those iontrest and shows to do activities their, 
-                here carousal can be used for the view */}
-
             <li className="nav-item">
-              <Link to="/blog" className="nav-links" onClick={closeMobileMenu}>
-                Blog
+              <Link to="/crawler" className="nav-links" onClick={closeMobileMenu}>
+                Crawler
               </Link>
             </li>
 
@@ -102,7 +92,13 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <NavbarUser />}
+          {button && (
+            <Button buttonStyle="btn--outline" link="/signin">
+              SIGN IN
+            </Button>
+          )}
+
+          <AccountMenu />
         </div>
       </nav>
     </>

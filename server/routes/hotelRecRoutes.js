@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { hotel_rec } from "../controllers/hotelRecController.js";
+import { recHotel } from "../controllers/hotelRecController.js";
 const router = Router();
-router.get("/hotel_rec", hotel_rec);
+router.get("/recommendHotel/:userId", recHotel);
 export default router;

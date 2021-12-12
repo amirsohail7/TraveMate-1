@@ -25,7 +25,7 @@ export const restaurant_get_detailed = (req, res) => {
 };
 
 export const specific_restaurant = (req, res) => {
-  Restaurant.find({ _id: req.params.id })
+  Restaurant.findOne({ _id: req.params.id })
     .populate("provider")
     .populate("reviews")
     .then((result) => {

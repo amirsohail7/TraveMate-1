@@ -4,7 +4,8 @@ import LeftArrow from "../../images/left-arrow.svg";
 import RightArrow from "../../images/right-arrow.svg";
 import Card from "./Card";
 
-export default function Carousel({ title, data }) {
+export default function Carousel({ hotels }) {
+  console.log(hotels);
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
     <img src={LeftArrow} alt="prevArrow" {...props} />
   );
@@ -24,16 +25,16 @@ export default function Carousel({ title, data }) {
   };
   return (
     <div className="card__container">
-      <h1>{title}</h1>
+      <h1>{hotels.title}</h1>
       <Slider {...settings} className="card__container--inner">
-        {data.map((item, index) => {
-          return (
-            <div className="card__container--inner--card" key={index}>
+        
+         
+            <div className="card__container--inner--card" >
               {/* here we can render hotels,restaurants tours and recommendations */}
-              <Card />
+              <h5>{hotels.name}</h5>
             </div>
-          );
-        })}
+          
+        
       </Slider>
     </div>
   );

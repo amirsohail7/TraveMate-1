@@ -3,17 +3,17 @@ import Navbar from "./components/home/Navbar";
 import "./App.css";
 import Home from "./components/home/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Hotels from "./components/hotels/pages/Hotels";
-import SingleHotel from "./components/hotels/pages/SingleHotel";
-import DestinationHome from "./components/destinations/DestinationHome";
+/* import Hotels from "./components/hotels/pages/Hotels";
+import SingleHotel from "./components/hotels/pages/SingleHotel"; */
+import DestinationHome from "./components/destinations/HomePage";
 import Resturants from "./Restaurants/Restaurants";
 import BlogHome from "./components/blog/BlogHome";
 import Signin from "./components/signin/Signin";
 import Form from "./components/signup/Form";
-import UserBlog from "./components/blog/UserBlog";
+import Blogs from "./components/blog/Blogs";
+import BlogDetails from "./components/blog/BlogDetails";
 import { HotelProvider } from "./context";
 import "semantic-ui-css/semantic.min.css";
-import Chatbot from './components/chatbot/Chatbot/Chatbot'
 import AddRestaurantForum from "./components/Dashboards/components/ProviderComponents/Forms/AddRestaurantForum";
 import AddHotelForm from "./components/Dashboards/components/ProviderComponents/Forms/AddHotelForm";
 import AddBlogForm from "./components/Dashboards/components/TravelerComponents/Forms/AddBlogForm";
@@ -25,6 +25,12 @@ import Provider from "./components/Dashboards/Provider";
 import Tourdetails from "./components/Tours/TourDetails";
 import RestaurantDetails from "./Restaurants/RestaurantDetails";
 import test from "./components/test";
+import Dashboard from "./components/admin/Dashboard";
+import Crawler from "./components/crawler/Crawler";
+import Hotels from "./Hotels/Hotels";
+import HotelDetails from "./Hotels/HotelDetails";
+import Compare from './Hotels/Compare'
+import ResCompare from './Restaurants/Compare'
 
 function App() {
   return (
@@ -38,31 +44,34 @@ function App() {
             <Route path="/tours" component={Tours} />
             <Route path="/tourdetail/:id" exact component={Tourdetails} />
             <Route
-              path="/destination/:results"
+              path="/destination"
               exact
               component={DestinationHome}
             />
             <Route path="/hotels" component={Hotels} />
-            <Route path="/hotels/:slug" exact component={SingleHotel} />
+            <Route path="/hoteldetail/:id" exact component={HotelDetails} />
             <Route path="/resturants" component={Resturants} />
             <Route
               path="/restaurantdetail/:id"
               exact
               component={RestaurantDetails}
             />
-            <Route path="/blog" component={BlogHome} />
-            <Route path="/userblog/:id" component={UserBlog} />
+            <Route path="/blogs" component={Blogs} />
+            <Route path="/blogdetail/:id" exact component={BlogDetails} />
             <Route path="/signup" component={Form} />
             <Route path="/signin" component={Signin} />
             <Route path="/AddRestaurantForum" component={AddRestaurantForum} />
             <Route path="/AddTourForum" component={AddTourForum} />
             <Route path="/AddHotelForm" component={AddHotelForm} />
             <Route path="/AddBlogForm" component={AddBlogForm} />
-            <Route path="/chatbot" component={Chatbot}/>
             <Route path="/Provider" component={Provider} />
             <Route path="/Traveler" component={Traveler} />
             <Route path="/ExploreNearby" component={ExploreNearby} />
             <Route path="/test" component={test} />
+            <Route path="/admin" component={Dashboard} />
+            <Route path="/crawler" component={Crawler} />
+            <Route path="/compare/:id1/:id2/:id3?" exact component={Compare}/>
+            <Route path="/rescompare/:id1/:id2/:id3?" exact component={ResCompare}/>
           </Switch>
         </Router>
       </HotelProvider>

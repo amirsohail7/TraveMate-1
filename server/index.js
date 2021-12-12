@@ -12,16 +12,20 @@ import providerRoutes from "./routes/providerRoutes.js";
 import travelerRoutes from "./routes/travelerRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import dialogflow from "./routes/dialogflowRoutes.js";
-/* import hotelRec from "./routes/hotelRecRoutes.js" */
+import hotelRec from "./routes/hotelRecRoutes.js"
+import restaurantRec from "./routes/restaurantRecRoutes.js"
+import attractionRec from "./routes/attractionRecRoutes.js"
 import reviewRoutes from "./routes/reviewRoutes.js";
 import path from "path";
 import fileRoutes from "./routes/file-upload-routes.js";
-
+import crawler from './routes/crawlerRoutes.js'
+import admin from "./routes/adminRoutes.js"
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.set('view engine', 'ejs');
 
 const CONNECTION_URL =
   "mongodb+srv://Hadikk:developattravemate123@cluster0.bira6.mongodb.net/travemate?retryWrites=true&w=majority";
@@ -46,12 +50,15 @@ app.use("/blog", blogRoutes);
 app.use("/destination", destinationRoutes);
 app.use("/package", packageRoutes);
 app.use("/api/dialogflow",dialogflow);
-/* app.use("/hotelRec",hotelRec); */
+app.use("/hotelRec",hotelRec);
+app.use("/restaurantRec",restaurantRec);
+app.use("/attractionRec",attractionRec);
 app.use("/review", reviewRoutes);
 //upload routes
 app.use("/uploads", express.static("uploads"));
 app.use("/api", fileRoutes);
-
+app.use("/crawler",crawler)
+app.use("/admin",admin) 
 // 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });

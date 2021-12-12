@@ -1,34 +1,23 @@
-import React from 'react'
-import { Card } from 'antd';
-import Icon from '@ant-design/icons';
-
-const { Meta } = Card;
+import React from "react";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import ListItemText from "@mui/material/ListItemText";
 
 function CardComponent(props) {
-    return (
-        <Card
-            style={{ width: 300 }}
-            cover={
-                <img
-                    alt={props.cardInfo.fields.description.stringValue}
-                    src={props.cardInfo.fields.image.stringValue} 
-                    width="100" height="100"
-                    />
-            }
-            /* actions={[
-                <a target="_blank" rel="noopener noreferrer" href={props.cardInfo.fields.link.stringValue}>
-                    <Icon type="ellipsis" key="ellipsis" />
-                </a>
-            ]} */
-        >
-            <Meta
-                /* title={props.cardInfo.fields.stack.stringValue} */
-                description={props.cardInfo.fields.description.stringValue}
-            />
-
-        </Card>
-
-    )
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt={props.cardInfo.fields.description.stringValue}
+        image={props.cardInfo.fields.image.stringValue}
+        width="100"
+        height="100"
+      />
+      <ListItemText>
+        {props.cardInfo.fields.description.stringValue}{" "}
+      </ListItemText>
+    </Card>
+  );
 }
 
-export default CardComponent
+export default CardComponent;

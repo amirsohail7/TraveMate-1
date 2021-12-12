@@ -3,11 +3,16 @@ import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { saveMessage } from "../_actions/message_actions";
 import Message from "./Sections/Message";
-import { List, Avatar } from "antd";
-import { RobotOutlined, SmileOutlined } from "@ant-design/icons";
-import '../chatbot.css'
+import Card from "@mui/material/Card";
+import CardTemp from "./Sections/Card";
+import TextField from "@mui/material/TextField";
+import Avatar from "@mui/material/Avatar";
+import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
 
-import Card from "./Sections/Card";
 function Chatbot() {
   const dispatch = useDispatch();
   const messagesFromRedux = useSelector((state) => state.message.messages);
@@ -110,7 +115,9 @@ function Chatbot() {
   };
 
   const renderCards = (cards) => {
-    return cards.map((card, i) => <Card key={i} cardInfo={card.structValue} />);
+    return cards.map((card, i) => (
+      <CardTemp key={i} cardInfo={card.structValue} />
+    ));
   };
 
   const renderOneMessage = (message, i) => {
@@ -125,20 +132,24 @@ function Chatbot() {
       );
     } else if (message.content && message.content.payload.fields.card) {
       const AvatarSrc =
-        message.who === "bot" ? <RobotOutlined /> : <SmileOutlined />;
+        message.who === "bot" ? (
+          <SmartToyOutlinedIcon fontSize="large" />
+        ) : (
+          <Avatar />
+        );
 
       return (
-        <div>
-          <List.Item style={{ padding: "1rem" }}>
-            <List.Item.Meta
-              avatar={<Avatar />}
-              title={message.who}
-              description={renderCards(
+        <List>
+          <ListItem /* style={{ padding: "1rem" }} */>
+            <ListItemAvatar>{AvatarSrc}</ListItemAvatar>
+            <ListItemText>{message.who}</ListItemText>
+            <ListItemText>
+              {renderCards(
                 message.content.payload.fields.card.listValue.values
               )}
-            />
-          </List.Item>
-        </div>
+            </ListItemText>
+          </ListItem>
+        </List>
       );
     }
 
@@ -156,31 +167,20 @@ function Chatbot() {
   };
 
   return (
-    <div
-      style={{
-        height: 700,
-        width: 700,
-        border: "3px solid black",
-        borderRadius: "7px",
-      }}
-    >
-      <div style={{ height: 644, width: "100%", overflow: "auto" }}>
+    <Card variant="outlined" sx={{ minWidth: 275 }}>
+      <List style={{ height:580, width: "80%", overflow: "auto" }}>
         {renderMessage(messagesFromRedux)}
-      </div>
-      <input
-        style={{
-          margin: 0,
-          width: "100%",
-          height: 50,
-          borderRadius: "4px",
-          padding: "5px",
-          fontSize: "1rem",
-        }}
+      </List>
+      <TextField
+        id="outlined-basic"
+        label="Send a message..."
+        variant="outlined"
         placeholder="Send a message..."
         onKeyPress={keyPressHanlder}
         type="text"
+        sx={{ width: "100%" }}
       />
-    </div>
+    </Card>
   );
 }
 

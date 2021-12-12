@@ -1,5 +1,5 @@
 import dialogflow from "dialogflow";
-import chatbot from "../models/dialogflow.js";
+import Feedback from "../models/feedback.js";
 
 
 const projectId = "travemate-bot-test";
@@ -10,6 +10,7 @@ const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 export const textQuery = async (req, res, next) => {
+  
   const request = {
     session: sessionPath,
     queryInput: {
@@ -51,3 +52,24 @@ export const eventQuery = async (req, res, next) => {
 
   res.send(result);
 };
+
+
+
+/*export const serviceFetch = (req, res) => {
+  Restaurant.find(
+    {
+      $and: [{ address: { $regex: req.params.city } }, { rating: "5.0" }],
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        return res.json({
+          speech: docs.name,
+          displayText: docs.name,
+          source: 'team info'
+      });
+      }
+    }
+  );
+}; */
