@@ -1,41 +1,143 @@
 import React from "react";
-import "../../App.css";
+import { useState, useEffect } from "react";
 import DirectoryItem from "./DirectoryItem";
-import useFetch from "../shared/useFetch";
-import "./Tours.css";
-
-//fetch restaurants from data base and store in const x useeffect to fetch
-/*async function get_tours() {
-    const response = await axios.get('http://localhost:3040/tours/')
-    .then(() => {
-        console.log('data recieved successfully')
-    })
-    return response
-}*/
+import css from "./Tours.module.css";
+import { Rating } from "@mui/material";
+import {
+  Slider,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from "@material-ui/core";
+import { byNameAsc, byNameDsc, byRatingAsc, byRatingDsc } from "../shared/sort";
+import axios from "axios";
 
 const Tours = () => {
-  const {
-    error,
-    isPending,
-    data: tours,
-  } = useFetch("http://localhost:3040/tour/");
+  const [val, setVal] = useState([1000, 15000]);
+  const [priceRange, setPriceRange] = useState("");
+  const [rating, setRating] = useState(0);
+  const [destination, setDestination] = useState("");
+  const [order, setOrder] = useState(null);
+  const [change, setChange] = useState(false);
+  const [tours, setTours] = useState();
+
+  const updateVal = (e, item) => {
+    setVal(item);
+    let range = "PKR " + val[0] + " - PKR " + val[1];
+    setPriceRange(range);
+    console.log(priceRange);
+  };
+
+  const getValue = (e) => {
+    let data = destination;
+    data.push(e.target.value);
+    setDestination(data);
+    console.log(destination);
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3040/tour/")
+      .then((response) => {
+        setTours(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const SortData = () => {
+    if (order === "Name asc") {
+      tours.sort(byNameAsc);
+    }
+    if (order === "Name dsc") {
+      tours.sort(byNameDsc);
+    }
+    if (order === "Rating asc") {
+      tours.sort(byRatingAsc);
+    }
+    if (order === "Rating dsc") {
+      tours.sort(byRatingDsc);
+    }
+  };
+
+  const filterData = () => {
+    let filtered = [];
+    if (rating != 0) {
+      filtered = tours.filter(function (ele) {
+        return ele.rating == rating;
+      });
+      setTours(filtered);
+    }
+  };
+
+  const handleClick = () => {
+    SortData();
+    filterData();
+    setChange(!change);
+    console.log(tours);
+  };
 
   return (
-    <div className="main">
-      <div>
-        <h1>Tour Packages</h1>
+    <div className={css.main}>
+      <div className={css.Header}>
+        <h1>Tours</h1>
+        <p>Find the perfect tour</p>
       </div>
-      <div className="items">
-        <div className="directory_container">
-          {error && <div>{error}</div>}
-          {isPending && <div className="loader"></div>}
-          {tours && <DirectoryItem tours={tours} />}
+      <div className={css.items}>
+        <div className={css.filters}>
+          <div className={css.card}>
+            <h4>Filter</h4>
+            <p>{rating} Star</p>
+            <Rating
+              name="simple-controlled"
+              value={rating}
+              precision={0.5}
+              onChange={(e) => setRating(e.target.value)}
+            />
+          </div>
+          <div className={css.card}>
+            <h4>Destination</h4>
+            <input
+              className={css.form__input}
+              type="text"
+              required
+              value={destination}
+              placeholder="Naran Kahgan"
+              onChange={(e) => setDestination(e.target.value)}
+            />
+          </div>
+          <div className={css.card}>
+            <h4>Price Range</h4>
+            <p>
+              PKR {val[0]} - PKR {val[1]}
+            </p>
+            <Slider
+              value={val}
+              min={0}
+              max={40000}
+              step={1000}
+              onChange={updateVal}
+            />
+          </div>
+          <button className={css.btn} onClick={() => handleClick()}>
+            Apply Filter
+          </button>
         </div>
-        <div>
-          <h1>filters</h1>
-          <h1>destination</h1>
-          <h1>price</h1>
-          <h1>sort</h1>
+        <div className={css.right_side}>
+          <select
+            style={{ width: 100 }}
+            onChange={(e) => setOrder(e.target.value)}
+          >
+            <option value="Name asc">Name ↓</option>
+            <option value="Name dsc">Name ↑</option>
+            <option value="Rating asc">Rating ↓</option>
+            <option value="Rating dsc">Rating ↑</option>
+          </select>
+          <div className={css.directory_container}>
+            {!tours && <div className={css.loader}></div>}
+            {tours && <DirectoryItem tours={tours} />}
+          </div>
         </div>
       </div>
     </div>

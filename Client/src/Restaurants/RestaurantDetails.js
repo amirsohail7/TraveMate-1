@@ -3,18 +3,22 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./RestaurantDetail.css";
 import { Rating } from "@mui/material";
-import GoogleMapComponent from "../components/GoogleMapComponent";
+import GoogleMapComponent from "../components/shared/GoogleMapComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EmailIcon from "@mui/icons-material/Email";
 import PinDropIcon from "@mui/icons-material/PinDrop";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import WriteReview from "../components/WriteReview";
-import ServiceReview from "../components/ServiceReview";
+import WriteReview from "../components/shared/WriteReview";
+import ServiceReview from "../components/shared/ServiceReview";
+import DisplayImagesList from "../components/shared/DisplayImagesList";
+import FetchWeather from "../components/shared/FetchWeather";
+import Reservations from "./Reservations";
 
 const RestaurantDetails = () => {
   const { id } = useParams();
   const [restaurantDetail, setRestaurantDetail] = useState(null);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = useState(null);
+  const [reservation, setReservation] = useState(false);
 
   useEffect(() => {
     axios
@@ -30,70 +34,98 @@ const RestaurantDetails = () => {
 
   if (error) return `Error: ${error.message}`;
   if (!restaurantDetail) return null;
-  console.log(restaurantDetail.name);
+
+  const handle_reservation = () => {
+    setReservation(!reservation);
+    console.log(reservation);
+  };
 
   return (
     <div>
-      {restaurantDetail.map((restaurant) => (
-        <div className="container">
-          <div className="Header">
+      <div className="container">
+        <div className="Header">
+          <div className="coloumn1">
             <h2>
               <span>
                 <ArrowBackIcon />{" "}
               </span>
               Restaurant Detail
             </h2>
-            <h2>{restaurant.name}</h2>
+            <h2>{restaurantDetail.name}</h2>
           </div>
-          <div className="Info">
-            <div className="Left_side">
-              <h2>Restaurant Information</h2>
-              <p>
-                <span>
-                  <EmailIcon />
-                </span>
-                Email {restaurant.email}
-              </p>
-              <p>
-                <span>
-                  <RestaurantMenuIcon />
-                </span>
-                cuisine {restaurant.cuisine}
-              </p>
-              <p>
-                <span>
-                  <PinDropIcon />
-                </span>
-                Address {restaurant.address}
-              </p>
-            </div>
-            <div className="Right_side">
-              <p>Price Level {restaurant.priceLevel}</p>
-              <Rating name="read-only" value={restaurant.rating} readOnly />
-              <p>Reviews {restaurant.reviewsCount}</p>
-            </div>
-          </div>
-          <div className="Bottom_half">
-            <div className="sidebyside">
-              <div className="Photos">
-                <h2>Gallery</h2>
-              </div>
-
-              <div className="map-container">
-                <GoogleMapComponent
-                  lng={restaurant.longitude}
-                  lat={restaurant.latitude}
-                />
-              </div>
-            </div>
-            <div className="Reviews">
-              <WriteReview service={restaurant._id} serviceType="Restaurant" />
-              <h2>Traveler Feedback</h2>
-              <ServiceReview Reviews={restaurant.reviews} />
-            </div>
+          <div className="coloumn3">
+            <button
+              className="paymentbutton"
+              onClick={() => handle_reservation()}
+            >
+              Make Reservations
+            </button>
+            {reservation && <Reservations restaurant={restaurantDetail} />}
           </div>
         </div>
-      ))}
+        <div className="Info">
+          <div className="coloumn1">
+            <h2 className="title">Restaurant Information</h2>
+            <p>
+              <span>
+                <EmailIcon />
+              </span>
+              Email {restaurantDetail.email}
+            </p>
+            <p>
+              <span>
+                <RestaurantMenuIcon />
+              </span>
+              cuisine {restaurantDetail.cuisine}
+            </p>
+            <p>
+              <span>
+                <PinDropIcon />
+              </span>
+              Address {restaurantDetail.address}
+            </p>
+          </div>
+          <div className="coloumn2">
+            <p className="muted">{restaurantDetail.priceLevel}</p>
+            <Rating
+              name="read-only"
+              value={restaurantDetail.rating}
+              readOnly
+              precision={0.5}
+            />
+            <p>Reviews {restaurantDetail.reviewsCount}</p>
+          </div>
+          <div className="coloumn3">
+            <FetchWeather
+              lat={restaurantDetail.latitude}
+              lon={restaurantDetail.longitude}
+            />
+          </div>
+        </div>
+        <div className="Bottom_half">
+          <div className="sidebyside">
+            <div className="Photos">
+              <h2>Gallery</h2>
+              <DisplayImagesList photos={restaurantDetail.photos} />
+            </div>
+
+            <div className="map-container">
+              <GoogleMapComponent
+                lng={restaurantDetail.longitude}
+                lat={restaurantDetail.latitude}
+              />
+            </div>
+          </div>
+          <div className="Reviews">
+            <WriteReview
+              service={restaurantDetail._id}
+              serviceType="restaurantDetail"
+            />
+            <h2>Traveler Feedback</h2>
+            <ServiceReview Reviews={restaurantDetail.reviews} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,55 @@
+.container {
+  display: grid;
+  grid-template-columns: 1.7fr 0.1fr 1.4fr;
+  grid-template-rows: 0.8fr 1.2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Header Header Header"
+    "Items . Pay"
+    "Items . Pay";
+}
+
+.Header {
+  grid-area: Header;
+  padding-top: 20px;
+}
+
+.Items {
+  grid-area: Items;
+  padding-left: 35%;
+  border-right: solid lightgray;
+}
+.Items_right {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 5%;
+}
+.footer {
+  margin-top: 10%;
+  margin-right: 2%;
+}
+.Label {
+  margin-bottom: 10%;
+}
+
+.Pay {
+  grid-area: Pay;
+}
+.confirm_booking {
+  background: #000000;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 20rem;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}

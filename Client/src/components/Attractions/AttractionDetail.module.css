@@ -1,0 +1,84 @@
+.container {
+  display: grid;
+  grid-template-columns: 2fr 0.1fr 2fr;
+  grid-template-rows: 0.4fr 0.5fr 2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Header Header Header"
+    "Info Info Info"
+    "Bottom_half Bottom_half Bottom_half";
+}
+
+.Header {
+  grid-area: Header;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    161deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(9, 9, 121, 1) 49%,
+    rgba(237, 41, 57, 1) 100%
+  );
+  color: aliceblue;
+  padding: 10%;
+}
+
+.Info {
+  grid-area: Info;
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+  padding-left: 10%;
+}
+
+.coloumn1 {
+  width: 55%;
+}
+.coloumn2 {
+  width: 15%;
+  padding-top: 2%;
+}
+.coloumn3 {
+  width: 30%;
+}
+
+.Bottom_half {
+  grid-area: Bottom_half;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebyside {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(31, 31, 31);
+}
+
+.map_container {
+  width: 40%;
+  height: 350px;
+  color: antiquewhite;
+  padding: 3%;
+}
+
+.Photos {
+  color: antiquewhite;
+  padding: 3%;
+  padding-left: 10%;
+  width: 60%;
+}
+span {
+  margin: 1px;
+}
+
+.Reviews {
+  padding: 5%;
+  padding-left: 10%;
+}
+.muted {
+  color: gray;
+}
+
+.title {
+  margin-bottom: 5%;
+}

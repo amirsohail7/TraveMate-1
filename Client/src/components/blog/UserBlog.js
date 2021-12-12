@@ -45,7 +45,7 @@ export default function UserBlog() {
             <UserInfo
               link="/userblog"
               dp="/images/small.jpg"
-              username={blog.author.username}
+              //username={blog.author.username}
               bio="Traveling is therapy"
               action="Follow"
             />

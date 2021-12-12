@@ -14,7 +14,9 @@ export const all_providers = (req, res) => {
 
 export const all_providers_detailed = (req, res) => {
   Provider.find()
-    .populate("services")
+    .populate("Restaurant")
+    .populate("Hotel")
+    .populate("Tours")
     .then((result) => {
       res.send(result);
     })
@@ -25,7 +27,9 @@ export const all_providers_detailed = (req, res) => {
 
 export const specific_provider = (req, res) => {
   Provider.find({ _id: req.params.id })
-    .populate("services")
+    .populate("Restaurant")
+    .populate("Hotel")
+    .populate("Tours")
     .then((result) => {
       res.send(result);
     })
@@ -54,13 +58,9 @@ export const create_provider = (req, res, next) => {
 
 export const add_service = (req, res, next) => {
   Provider.findOneAndUpdate(
-    { _id: req.params.pid },
-    {
-      $push: {
-        services: req.params.sid,
-      },
-    },
-    { new: true, upsert: false },
+    { _id: req.params.id },
+    req.body,
+    { new: false, upsert: false },
     function (error, result) {
       if (error) {
         return next(error);

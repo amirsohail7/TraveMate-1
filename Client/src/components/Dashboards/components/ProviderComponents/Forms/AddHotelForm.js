@@ -16,7 +16,7 @@ import Rating from "@mui/material/Rating";
 
 const AddHotelForum = () => {
   const [name, setName] = useState("");
-  const [priceLevel, setPriceLevel] = useState("2");
+  const [priceLevel, setPriceLevel] = useState("$$");
   const [priceRange, setPriceRange] = useState("");
   const [hotelClass, setHotelClass] = useState("");
   const [phone, setPhone] = useState("");
@@ -118,8 +118,8 @@ const AddHotelForum = () => {
     };
     console.log(hotel);
     axios.post("http://localhost:3040/hotel/create_hotel", hotel).then(() => {
-      // history.push('/')
-      console.log("data is posted");
+      history.push("/ProviderDash");
+      alert("Tour Created Successfully!");
     });
   };
   return (

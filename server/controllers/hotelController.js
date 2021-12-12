@@ -26,6 +26,7 @@ export const all_hotels_detailed = (req, res) => {
 export const specific_hotel = (req, res) => {
   Hotel.findOne({ _id: req.params.id })
     .populate("provider")
+    .populate("reviews")
     .then((result) => {
       res.send(result);
     })
@@ -52,10 +53,24 @@ export const create_hotel = (req, res, next) => {
 
 //PUT Routes
 
-export const add_provider = (req, res, next) => {
+export const add_review = (req, res, next) => {
   Hotel.findOneAndUpdate(
-    { _id: req.params.hid },
-    { provider: req.params.pid },
+    { _id: req.params.sid },
+    { $addToSet: { reviews: [req.params.rid] } },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const update = (req, res, next) => {
+  Hotel.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true, upsert: false },
     function (error, result) {
       if (error) {
         return next(error);

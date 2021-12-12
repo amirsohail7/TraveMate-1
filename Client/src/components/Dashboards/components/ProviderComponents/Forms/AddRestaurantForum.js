@@ -189,6 +189,7 @@ const AddRestaurantForum = () => {
               className={formCSS.form__input}
               type="text"
               value={title}
+              required
               placeholder="Decor,Menu.."
               onChange={(e) => setTitle(e.target.value)}
             />

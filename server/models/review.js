@@ -18,12 +18,12 @@ const reviewSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Traveler",
-    required: true,
+    //required: true,
   },
 
   service: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    //required: true,
   },
   serviceType: {
     type: String,

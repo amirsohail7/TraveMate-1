@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getMultipleFiles } from "../shared/uploads";
+import { useHistory } from "react-router-dom";
 
 const TourDetails = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [tourDetail, setTourDetail] = useState(null);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = useState(null);
   const [multipleFiles, setMultipleFiles] = useState([]);
   const [photosID, setPhotosID] = useState("");
 
@@ -25,7 +27,7 @@ const TourDetails = () => {
       .then((response) => {
         setTourDetail(response.data);
         console.log(response.data);
-        setPhotosID(response.data[0].photos._id);
+        setPhotosID(response.data.photos._id);
       })
       .catch((error) => {
         setError(error);
@@ -36,21 +38,22 @@ const TourDetails = () => {
   if (!tourDetail) return null;
   getMultipleFilesList(photosID);
 
+  const Submit = () => {
+    history.push(`/book/Tour/${id}`);
+  };
+
   return (
     <div>
       <div>
-        {tourDetail.map((tour) => (
-          <div>
-            <h2>{tour.Name}</h2>
-            <p>Destination {tour.Destination}</p>
-            <p>Departure from : {tour.DepartureLocation}</p>
-            <p>{tour.Departure}</p>
-            <p>{tour.Description}</p>
-            <p>PKR {tour.Price}</p>
-            <p>{tour.tourStatus}</p>
-            <p>Provider : {tour.provider.username}</p>
-          </div>
-        ))}
+        <button onClick={() => Submit()}></button>
+        <h2>{tourDetail.Name}</h2>
+        <p>Destination {tourDetail.Destination}</p>
+        <p>Departure from : {tourDetail.DepartureLocation}</p>
+        <p>{tourDetail.Departure}</p>
+        <p>{tourDetail.Description}</p>
+        <p>PKR {tourDetail.Price}</p>
+        <p>{tourDetail.tourStatus}</p>
+        <p>Provider : {tourDetail.provider.username}</p>
       </div>
 
       <div className="col-6">

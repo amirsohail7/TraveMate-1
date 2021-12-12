@@ -10,9 +10,11 @@ const StyledRoot = styled.div`
   /* padding: 50px 12px; */
 `;
 const StyledContainer = styled.div`
-  max-width: 550px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   width: 100%;
-  margin: 3px 3px 3px;
+  margin: 20px;
 `;
 const BlogCard = ({ blogs }) => {
   const date = new Date().toLocaleDateString();

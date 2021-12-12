@@ -9,13 +9,17 @@ const StyledContainer = styled.div`
   /* background: ${(props) => `linear-gradient(
     45deg, ${props.theme.primary}, ${props.theme.secondary}
   )`}; */
+  height: 300px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 const CardPhoto = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 10px;
   /* border: ${(props) => `1px solid ${props.theme.border}`}; */
 `;
 
@@ -28,17 +32,17 @@ const UserLink = styled.span`
 const UserDp = styled.img`
   border-radius: 50%;
   height: 40px;
-  float:left;
-  margin-right:0.5rem;
-  margin-top:0.5rem;
-  margin-bottom:0.5rem;
+  float: left;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Title = styled.h2`
   color: #000000;
   font-weight: 900;
-  float:none;
-  overflow:hidden;
+  float: none;
+  overflow: hidden;
   @media (max-width: 500px) {
     font-size: 1rem;
   }

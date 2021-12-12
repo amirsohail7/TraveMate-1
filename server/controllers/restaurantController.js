@@ -36,6 +36,21 @@ export const specific_restaurant = (req, res) => {
     });
 };
 
+export const top_restaurants = (req, res) => {
+  Restaurant.find(
+    {
+      $and: [{ address: { $regex: req.params.city } }, { rating: "5.0" }],
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(docs);
+      }
+    }
+  );
+};
+
 //POST Routes
 
 export const restaurant_create = (req, res) => {
@@ -54,10 +69,24 @@ export const restaurant_create = (req, res) => {
 
 //PUT Routes
 
-export const add_provider = (req, res, next) => {
+export const add_review = (req, res, next) => {
   Restaurant.findOneAndUpdate(
-    { _id: req.params.rid },
-    { provider: req.params.pid },
+    { _id: req.params.sid },
+    { $addToSet: { reviews: [req.params.rid] } },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const update = (req, res, next) => {
+  Restaurant.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: false, upsert: false },
     function (error, result) {
       if (error) {
         return next(error);

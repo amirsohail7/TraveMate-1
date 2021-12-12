@@ -9,12 +9,12 @@ const FormSuccess = () => {
   const redirect = () => {
     console.log("clicked");
     if (userType === "Provider") {
-      history.push("/ProviderDash");
+      history.push("/Provider/Dashboard");
       console.log("redirect to Provider dash");
     }
     if (userType === "Traveler") {
       console.log("redirect to travler dash");
-      history.push("/Traveler");
+      history.push("/Traveler/Dashboard");
     }
   };
 

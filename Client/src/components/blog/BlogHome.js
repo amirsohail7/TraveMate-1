@@ -7,7 +7,9 @@ import useFetch from "../shared/useFetch";
 
 const StyledContainer = styled.div``;
 const Hero = styled.div`
-  background: url("/images/chitral.jpg") center center/cover no-repeat;
+  background: rgba(0, 0, 0, 0.316) url("/images/chitral.jpg") center
+    center/cover no-repeat;
+  background-blend-mode: darken;
   height: 60vh;
   width: 100%;
   display: flex;
@@ -17,21 +19,20 @@ const Hero = styled.div`
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
   color: #fff;
-  font-size: 90px;
+  font-size: 40px;
 `;
 const CardConatainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
-const Heading = styled.h1`
+const Heading = styled.h2`
   display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 42.5%;
+  font-size: 30px;
   font-weight: 400;
-  border-bottom: 1px solid black;
 `;
 
 export default function BlogHome() {

@@ -24,13 +24,16 @@ import Traveler from "./components/Dashboards/Traveler";
 import Provider from "./components/Dashboards/Provider";
 import Tourdetails from "./components/Tours/TourDetails";
 import RestaurantDetails from "./Restaurants/RestaurantDetails";
-import test from "./components/test";
+
 import Dashboard from "./components/admin/Dashboard";
 import Crawler from "./components/crawler/Crawler";
 import Hotels from "./Hotels/Hotels";
 import HotelDetails from "./Hotels/HotelDetails";
 import Compare from './Hotels/Compare'
 import ResCompare from './Restaurants/Compare'
+import AttractionDetail from "./components/Attractions/AttractionDetail";
+import Attractions from "./components/Attractions/Attractions";
+import PayByCard from "./components/stripe/PayByCard";
 
 function App() {
   return (
@@ -58,20 +61,30 @@ function App() {
             />
             <Route path="/blogs" component={Blogs} />
             <Route path="/blogdetail/:id" exact component={BlogDetails} />
+            <Route path="/attractions" component={Attractions} />
+            <Route
+              path="/attractionDetail/:id"
+              exact
+              component={AttractionDetail}
+            />
             <Route path="/signup" component={Form} />
             <Route path="/signin" component={Signin} />
             <Route path="/AddRestaurantForum" component={AddRestaurantForum} />
-            <Route path="/AddTourForum" component={AddTourForum} />
+            <Route path="/AddTourForm" component={AddTourForum} />
             <Route path="/AddHotelForm" component={AddHotelForm} />
             <Route path="/AddBlogForm" component={AddBlogForm} />
-            <Route path="/Provider" component={Provider} />
+            <Route
+              path="/Provider/:view/:type?/:id?"
+              exact
+              component={Provider}
+            />
             <Route path="/Traveler" component={Traveler} />
             <Route path="/ExploreNearby" component={ExploreNearby} />
-            <Route path="/test" component={test} />
             <Route path="/admin" component={Dashboard} />
             <Route path="/crawler" component={Crawler} />
             <Route path="/compare/:id1/:id2/:id3?" exact component={Compare}/>
             <Route path="/rescompare/:id1/:id2/:id3?" exact component={ResCompare}/>
+            <Route path="/book/:type/:id" component={PayByCard} />
           </Switch>
         </Router>
       </HotelProvider>
