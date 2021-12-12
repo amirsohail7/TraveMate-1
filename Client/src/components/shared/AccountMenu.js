@@ -63,7 +63,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
       {/* use Link tag here and use conditional route with respective to user type for dashboard */}
-      <Link to="/ProviderDash">
+      <Link to="/Provider/Dashboard">
         <MenuItem>
           <DashboardIcon sx={{ width: 32, height: 32, ml: -0.5, mr: 1 }} />
           {" Dashboard"}

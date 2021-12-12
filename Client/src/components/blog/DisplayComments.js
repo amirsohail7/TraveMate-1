@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import css from "../review.module.css";
+import css from "../shared/review.module.css";
 
 const DisplayComments = ({ Comments }) => {
   console.log(Comments);

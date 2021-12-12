@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import css from "./HotelDetail.module.css";
 import { Rating } from "@mui/material";
-import GoogleMapComponent from "../components/GoogleMapComponent";
+import GoogleMapComponent from "../components/shared/GoogleMapComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EmailIcon from "@mui/icons-material/Email";
 import PinDropIcon from "@mui/icons-material/PinDrop";
-import WriteReview from "../components/WriteReview";
-import ServiceReview from "../components/ServiceReview";
+import WriteReview from "../components//shared/WriteReview";
+import ServiceReview from "../components/shared/ServiceReview";
 
 const HotelDetails = () => {
   const { id } = useParams();
