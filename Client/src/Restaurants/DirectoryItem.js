@@ -1,10 +1,23 @@
 //import { Link } from 'react-router-dom';
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link,useHistory } from "react-router-dom";
 import "./DirectoryItem.css";
 import { Rating } from "@mui/material";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 
 const DirectoryItem = ({ restaurants }) => {
+  const [toCompare, setToCompare] = useState([]);
+  const history = useHistory();
+  const getValue = (e) => {
+    let data = toCompare;
+    data.push(e.target.value);
+    setToCompare(data);
+    if (toCompare.length > 2) {
+      history.push(`/rescompare/${toCompare[0]}/${toCompare[1]}`);
+    }
+    console.log(toCompare);
+  };
+
   return (
     <div className="item_list">
       {restaurants.map((restaurant) => (
@@ -23,6 +36,16 @@ const DirectoryItem = ({ restaurants }) => {
               <Rating name="read-only" value={restaurant.rating} readOnly />
             </div>
           </Link>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="primary"
+                value={restaurant._id}
+                onChange={(e) => getValue(e)}
+              />
+            }
+            label="Compare"
+          />
         </div>
       ))}
     </div>

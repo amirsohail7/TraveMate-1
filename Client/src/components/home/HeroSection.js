@@ -3,6 +3,7 @@ import '../../App.css';
 import { Button } from '../shared/Button';
 import './HeroSection.css';
 import LocationSearch from '../shared/LocationSearch';
+import Popup from "../chatbot/Popup"
 
 function HeroSection() {
   return (
@@ -12,12 +13,12 @@ function HeroSection() {
       <LocationSearch/>
       <div className='hero-btns'>
         <Button
-          link='/blog'
+          link='/destination'
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
-          GET STARTED
+          Your Recommendations
         </Button>
         <Button
           className='btns'
@@ -27,6 +28,7 @@ function HeroSection() {
         >
           GALLERY <i className='fa fa-camera' />
         </Button>
+        <Popup/>
       </div>
     </div>
   );
