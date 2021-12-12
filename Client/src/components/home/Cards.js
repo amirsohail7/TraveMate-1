@@ -1,46 +1,29 @@
-import React from 'react';
-import './Cards.css';
+import React, { useState,useEffect } from 'react';
+import css from './Cards.module.css';
 import CardItem from './CardItem';
+import axios from "axios";
 
-function Cards() {
+const Cards=()=> {
+const [destinations,setDestinations]=useState(null);
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:3040/attractionRec/recommendAttraction/39")
+    .then((response)=>{
+      setDestinations(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  }, []);
+
   return (
-    <div className='cards'>
+    <div className={css.cards}>
       <h1>Trending Destinations!</h1>
-      <div className='cards__container'>
-        <div className='cards__wrapper'>
-          <ul className='cards__items'>
-            <CardItem
-              src='images/islamabad2.jpg'
-              text='explore one of world most beautiful capitals'
-              label='Islamabad'
-              path='/hotels'
-            />
-            <CardItem
-              src='images/chitral.jpg'
-              text='explore natural beauty and unique culture'
-              label='Chitral'
-              path='/hotels'
-            />
-          </ul>
-          <ul className='cards__items'>
-            <CardItem
-              src='images/hunza.jpg'
-              text='explore valley which is refered as heaven on earth'
-              label='Hunza'
-              path='/hotels'
-            />
-            <CardItem
-              src='images/murree.jpg'
-              text='Popular picnic destination of Pakistan'
-              label='Murree'
-              path='/hotels'
-            />
-            <CardItem
-              src='images/abbotabad.jpg'
-              text='City blessed with pleasant weather all year round'
-              label='Abbotabad'
-              path='/sign-up'
-            />
+      <div className={css.cards__container}>
+        <div className={css.cards__wrapper}>
+          <ul className={css.cards__items}>
+          {destinations && <CardItem destinations={destinations} />}
           </ul>
         </div>
       </div>

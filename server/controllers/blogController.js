@@ -24,7 +24,7 @@ export const all_blogs_detailed = (req, res) => {
 };
 
 export const specific_blog = (req, res) => {
-  Blog.find({ _id: req.params.id })
+  Blog.findOne({ _id: req.params.id })
     .populate("author")
     .then((result) => {
       res.send(result);
@@ -52,10 +52,10 @@ export const create_blog = (req, res, next) => {
 
 //PUT ROUTES
 
-export const add_author = (req, res, next) => {
+export const add_comments = (req, res, next) => {
   Blog.findOneAndUpdate(
-    { _id: req.params.tid },
-    { author: req.params.aid },
+    { _id: req.params.id },
+    {$push: {comments:[req.body]}},
     function (error, result) {
       if (error) {
         return next(error);

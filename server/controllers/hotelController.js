@@ -1,4 +1,3 @@
-import Attraction from "../models/attraction.js";
 import Hotel from "../models/hotel.js";
 
 //GET Routes
