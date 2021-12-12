@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DirectoryItem from "./DirectoryItem";
 import useFetch from "../components/shared/useFetch";
 import css from "./Restaurants.module.css";
@@ -16,15 +16,16 @@ import {
   byRatingAsc,
   byRatingDsc,
 } from "../components/shared/sort";
+import axios from "axios";
 
 const Restaurants = () => {
   const [val, setVal] = useState([1000, 15000]);
   const [priceRange, setPriceRange] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0);
   const [cuisine, setCuisine] = useState([]);
   const [order, setOrder] = useState(null);
-  const [change, setChange] = useState("");
-  //const [restaurants, setRestaurants] = useState([]);
+  const [change, setChange] = useState(false);
+  const [restaurants, setRestaurants] = useState();
 
   const updateVal = (e, item) => {
     setVal(item);
@@ -40,13 +41,22 @@ const Restaurants = () => {
     console.log(cuisine);
   };
 
-  const {
-    error,
-    isPending,
-    data: restaurants,
-  } = useFetch("http://localhost:3040/restaurant/");
+  // const { error, isPending, data } = useFetch(
+  //   "http://localhost:3040/restaurant/"
+  // );
 
-  const filter = () => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:3040/restaurant/")
+      .then((response) => {
+        setRestaurants(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const SortData = () => {
     if (order === "Name asc") {
       restaurants.sort(byNameAsc);
     }
@@ -54,14 +64,28 @@ const Restaurants = () => {
       restaurants.sort(byNameDsc);
     }
     if (order === "Rating asc") {
-      restaurants.sort(byNameAsc);
+      restaurants.sort(byRatingAsc);
     }
     if (order === "Rating dsc") {
-      restaurants.sort(byNameDsc);
+      restaurants.sort(byRatingDsc);
     }
+  };
 
+  const filterData = () => {
+    let filtered = [];
+    if (rating != 0) {
+      filtered = restaurants.filter(function (ele) {
+        return ele.rating == rating;
+      });
+      setRestaurants(filtered);
+    }
+  };
+
+  const handleClick = () => {
+    SortData();
+    filterData();
+    setChange(!change);
     console.log(restaurants);
-    setChange(order);
   };
 
   return (
@@ -78,6 +102,7 @@ const Restaurants = () => {
             <Rating
               name="simple-controlled"
               value={rating}
+              precision={0.5}
               onChange={(e) => setRating(e.target.value)}
             />
           </div>
@@ -190,7 +215,7 @@ const Restaurants = () => {
               onChange={updateVal}
             />
           </div>
-          <button className={css.btn} onClick={() => filter()}>
+          <button className={css.btn} onClick={() => handleClick()}>
             Apply Filter
           </button>
         </div>
@@ -205,8 +230,7 @@ const Restaurants = () => {
             <option value="Rating dsc">Rating ↑</option>
           </select>
           <div className={css.directory_container}>
-            {error && <div>{error}</div>}
-            {isPending && <div className={css.loader}></div>}
+            {!restaurants && <div className={css.loader}></div>}
             {restaurants && <DirectoryItem restaurants={restaurants} />}
           </div>
         </div>

@@ -13,7 +13,7 @@ const AddTourForum = () => {
   const [Departure, setDeparture] = useState(" ");
   const [DepartureLocation, setDepartureLocation] = useState(" ");
   const [Price, setPrice] = useState(" ");
-  const [provider, setProvider] = useState(localStorage.getItem("userID"));
+  const provider = localStorage.getItem("userID");
   const [tourStatus, setStatus] = useState(" ");
   const [Description, setDescription] = useState(" ");
   const [photos, setPhotos] = useState("");
@@ -66,17 +66,24 @@ const AddTourForum = () => {
 
     axios.post("http://localhost:3040/tour/create_tour", tour).then(() => {
       history.push("/ProviderDash");
-      console.log("data is posted");
+      alert("Tour Created Successfully!");
       console.log(tour);
     });
   };
 
   return (
-    <div className={formCSS.tourbg}>
-      <div className={formCSS.container}>
-        <h2 className={formCSS.form__title}>Add Tour Form</h2>
+    <div className={formCSS.container}>
+      <div className={formCSS.Header_Tour}></div>
 
-        <form className={formCSS.form} onSubmit={handleSubmit}>
+      <div className={formCSS.Description}>
+        <h2 className={formCSS.form__title}>Create Tour</h2>
+        <p className={formCSS.muted}>
+          Please fill all the fields as Accuratley as you can
+        </p>
+      </div>
+
+      <form className={formCSS.FormGrid} onSubmit={handleSubmit}>
+        <div className={formCSS.FieldsLeft}>
           <div className={formCSS.form__item}>
             <label className={formCSS.form__label}>Tour Title : </label>
             <input
@@ -141,7 +148,9 @@ const AddTourForum = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
+        </div>
 
+        <div className={formCSS.FieldsRight}>
           <div className={formCSS.form__item}>
             <label className={formCSS.form__label}>Name your Gallery : </label>
             <textarea
@@ -191,8 +200,8 @@ const AddTourForum = () => {
           </div>
 
           <button className={formCSS.btn}>Submit</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

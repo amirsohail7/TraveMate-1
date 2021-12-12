@@ -12,7 +12,6 @@ function Earnings() {
         </Chart>
         <EarningsText>Earnings</EarningsText>
         <Earning>PKR 70,890</Earning>
-        <EarningsIncrease>+ 10% since last month</EarningsIncrease>
       </CardContent>
     </EarningsCard>
   );

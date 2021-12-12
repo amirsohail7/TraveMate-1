@@ -23,7 +23,7 @@ export const all_reviews_detailed = (req, res) => {
     });
 };
 
-export const service_reviews = (req, res) => {
+export const specific_reviews = (req, res) => {
   Review.find({ _id: req.params.id })
     .populate("author")
     .then((result) => {

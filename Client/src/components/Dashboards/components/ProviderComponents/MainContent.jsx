@@ -42,7 +42,7 @@ function MainContent() {
 }
 
 const Container = styled.div`
-  width: 80%;
+  width: 85%;
   background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%);
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;

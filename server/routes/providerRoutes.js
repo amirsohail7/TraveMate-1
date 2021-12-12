@@ -14,7 +14,7 @@ router.get("/", all_providers);
 router.get("/detailed", all_providers_detailed);
 router.get("/:id", specific_provider);
 router.post("/create_provider", create_provider);
-router.put(":pid/service/:sid", add_service);
+router.put("/update/:id", add_service);
 router.delete("/delete/:id", delete_provider);
 
 export default router;

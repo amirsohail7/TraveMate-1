@@ -21,7 +21,7 @@ const NavbarUser = () => {
   }, 50000);
 
   const logout = () => {
-    localStorage.removeItem("isLoggedIn");
+    localStorage.clear();
     setUser(false);
     console.log("Log OUT clicked");
   };

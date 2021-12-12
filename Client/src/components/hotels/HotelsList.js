@@ -1,23 +1,33 @@
-import React, { Component } from "react";
-import { HotelContext } from "../../context";
+import React, { useEffect, useState } from "react";
 import Hotel from "./Hotel";
 import Title from "./Title";
 import Compare from "./compare/Compare";
+import axios from "axios";
 
-export default class HotelsList extends Component {
-  static contextType = HotelContext;
+const HotelsList = () => {
+  const [hotels, setHotels] = useState(null);
 
-  render() {
-    let { hotels } = this.context;
-    hotels = hotels.map((hotel) => {
-      return <Hotel key={hotel.id} hotel={hotel} />;
-    });
-    return (
-      <section className="featured-hotels">
-        <Title title="Hotels" />
-        <div className="featured-hotels-center">{hotels}</div>
-        <Compare/>
-      </section>
-    );
-  }
-}
+  useEffect(() => {
+    axios
+      .get("http://localhost:3040/attraction/")
+      .then((response) => {
+        setHotels(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  hotels = hotels.map((hotel) => {
+    return <Hotel key={hotel.id} hotel={hotel} />;
+  });
+
+  return (
+    <section className="featured-hotels">
+      <Title title="Hotels" />
+      <div className="featured-hotels-center">{hotels}</div>
+      <Compare />
+    </section>
+  );
+};
+export default HotelsList;

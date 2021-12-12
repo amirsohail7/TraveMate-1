@@ -12,8 +12,10 @@ import providerRoutes from "./routes/providerRoutes.js";
 import travelerRoutes from "./routes/travelerRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import attractionRoutes from "./routes/attractionRoutes.js";
 import path from "path";
 import fileRoutes from "./routes/file-upload-routes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 const app = express();
 
@@ -35,6 +37,7 @@ mongoose
 mongoose.set("useFindAndModify", false);
 
 app.use("/tour", tourRoutes);
+app.use("/attraction", attractionRoutes);
 app.use("/restaurant", restaurantRoutes);
 app.use("/provider", providerRoutes);
 app.use("/traveler", travelerRoutes);
@@ -47,6 +50,8 @@ app.use("/review", reviewRoutes);
 //upload routes
 app.use("/uploads", express.static("uploads"));
 app.use("/api", fileRoutes);
+//payment routes
+app.use("/payment", cors(), paymentRoutes);
 
 // 404 page
 app.use((req, res) => {

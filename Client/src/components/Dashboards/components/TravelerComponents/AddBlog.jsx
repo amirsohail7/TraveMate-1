@@ -22,7 +22,7 @@ function AddBlog() {
 const Card = styled.div`
   height: 100%;
   width: 14rem;
-  background-color: #003333};
+  background-color: #003333;
   padding: 1rem;
   border-radius: 1rem;
   color: white;

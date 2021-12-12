@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import { HotelContext } from "../../context";
 import "./Hotels.css";
 
-
-
 const Hotel = ({ hotel }) => {
-  const { id,name, slug, images, price } = hotel;
+  const { id, name, _id, images, price } = hotel;
 
   return (
     <HotelContext.Consumer>
@@ -16,7 +14,7 @@ const Hotel = ({ hotel }) => {
           productsToCompare.length !== 0
             ? "product__thumb--compare-remove"
             : ""; */
-        
+
         const removeBtn = (
           <button
             onClick={() => removeFromCompare(id)}
@@ -43,21 +41,16 @@ const Hotel = ({ hotel }) => {
                 <h6>Rs.{price}</h6>
                 <p>per night</p>
               </div>
-              <div >
-              <img src={images[0]} alt="single hotel" />
-              <Link to={`/hotels/${slug}`} className="btn-primary hotel-link">
-                Details
-              </Link>
-              {(
-                <>{productsToCompare.length !== 0 ? removeBtn : addBtn}</>
-              )
-              }
-            </div>
+              <div>
+                <img src={images[0]} alt="single hotel" />
+                <Link to={`/hotels/${_id}`} className="btn-primary hotel-link">
+                  Details
+                </Link>
+                {<>{productsToCompare.length !== 0 ? removeBtn : addBtn}</>}
+              </div>
             </div>
             <p className="hotel-info">{name}</p>
-            
           </article>
-          
         );
       }}
     </HotelContext.Consumer>

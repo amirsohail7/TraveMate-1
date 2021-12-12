@@ -12,6 +12,8 @@
 
 .Header {
   grid-area: Header;
+  display: flex;
+  flex-direction: row;
   background: rgb(0, 0, 0);
   background: linear-gradient(
     161deg,
@@ -21,6 +23,7 @@
   );
   color: aliceblue;
   padding: 10%;
+  transition: all 0.2s ease;
 }
 
 .Info {
@@ -31,12 +34,15 @@
   padding-left: 10%;
 }
 
-.Left_side {
-  width: 60%;
+.coloumn1 {
+  width: 55%;
 }
-
-.Right_side {
-  width: 40%;
+.coloumn2 {
+  width: 15%;
+  padding-top: 2%;
+}
+.coloumn3 {
+  width: 30%;
 }
 
 .Bottom_half {
@@ -71,4 +77,31 @@ span {
 .Reviews {
   padding: 5%;
   padding-left: 10%;
+}
+.muted {
+  color: gray;
+}
+
+.title {
+  margin-bottom: 5%;
+}
+
+.paymentbutton {
+  background: #19191ad8;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 80%;
+  margin-top: 24px;
+}
+.paymentbutton:hover {
+  background-color: rgb(109, 109, 108);
 }

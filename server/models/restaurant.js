@@ -11,8 +11,8 @@ const restaurantSchema = new mongoose.Schema({
   },
 
   rating: {
-    type: Number,
-    default: 0,
+    type: String,
+    default: "0.0",
   },
 
   phone: {

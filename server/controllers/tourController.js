@@ -24,7 +24,7 @@ export const all_tours_detailed = (req, res) => {
 };
 
 export const specific_tour = (req, res) => {
-  Tour.find({ _id: req.params.id })
+  Tour.findOne({ _id: req.params.id })
     .populate("provider")
     .populate("photos")
     .then((result) => {
@@ -57,6 +57,20 @@ export const add_provider = (req, res, next) => {
   Tour.findOneAndUpdate(
     { _id: req.params.tid },
     { provider: req.params.pid },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const update = (req, res, next) => {
+  Tour.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: false, upsert: false },
     function (error, result) {
       if (error) {
         return next(error);

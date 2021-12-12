@@ -23,7 +23,10 @@ import Traveler from "./components/Dashboards/Traveler";
 import Provider from "./components/Dashboards/Provider";
 import Tourdetails from "./components/Tours/TourDetails";
 import RestaurantDetails from "./Restaurants/RestaurantDetails";
-import test from "./components/test";
+import AttractionDetail from "./components/Attractions/AttractionDetail";
+import Attractions from "./components/Attractions/Attractions";
+import Test from "./components/Test";
+import PayByCard from "./components/stripe/PayByCard";
 
 function App() {
   return (
@@ -48,18 +51,29 @@ function App() {
               exact
               component={RestaurantDetails}
             />
+            <Route path="/attractions" component={Attractions} />
+            <Route
+              path="/attractionDetail/:id"
+              exact
+              component={AttractionDetail}
+            />
             <Route path="/blog" component={BlogHome} />
             <Route path="/userblog/:id" component={UserBlog} />
             <Route path="/signup" component={Form} />
             <Route path="/signin" component={Signin} />
             <Route path="/AddRestaurantForum" component={AddRestaurantForum} />
-            <Route path="/AddTourForum" component={AddTourForum} />
+            <Route path="/AddTourForm" component={AddTourForum} />
             <Route path="/AddHotelForm" component={AddHotelForm} />
             <Route path="/AddBlogForm" component={AddBlogForm} />
-            <Route path="/Provider" component={Provider} />
+            <Route
+              path="/Provider/:view/:type?/:id?"
+              exact
+              component={Provider}
+            />
             <Route path="/Traveler" component={Traveler} />
             <Route path="/ExploreNearby" component={ExploreNearby} />
-            <Route path="/test" component={test} />
+            <Route path="/book/:type/:id" component={PayByCard} />
+            <Route path="/test" component={Test} />
           </Switch>
         </Router>
       </HotelProvider>
