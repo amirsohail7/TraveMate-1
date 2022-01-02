@@ -9,8 +9,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Alert from "@mui/material/Alert";
+import { useHistory } from "react-router-dom";
 
 const PayByCard = () => {
+  const history = useHistory();
   const { type, id } = useParams();
   const [service, setService] = useState();
   console.log(id);
@@ -20,7 +22,8 @@ const PayByCard = () => {
   const [from, setFrom] = useState();
   const [discount, setDiscount] = useState();
   let price = 5000;
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("pending");
+  const [paymentType, setPaymentType] = useState("by hand");
   const [description, setDescription] = useState();
   const traveler = localStorage.getItem("userID");
   const [provider, setProvider] = useState("61ab4a6cb20041437484dc56");
@@ -53,6 +56,7 @@ const PayByCard = () => {
       from,
       to,
       description,
+      paymentType,
       service,
       traveler,
       provider,
@@ -85,6 +89,8 @@ const PayByCard = () => {
       .then((response) => {
         if (response.status === 200) {
           setAlert(true);
+          console.log(response.data);
+          localStorage.setItem("booking", response.data._id);
         }
       })
       .catch((error) => {
@@ -104,6 +110,14 @@ const PayByCard = () => {
     }
   };
 
+  const payNow = () => {
+    setPaymentStatus("paid");
+  };
+
+  const payLater = () => {
+    history.push(`/Traveler/Bookings`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.Header}>
@@ -113,20 +127,8 @@ const PayByCard = () => {
         <h2 className={styles.Label}>Items</h2>
         {service && (
           <div>
-            <h3>Marriot</h3>
-            <p>{service.name}</p>
-            <p>PKR 40000</p>
-            <p>
-              Seats{" "}
-              <span>
-                <input
-                  type="Number"
-                  value={seats}
-                  placeholder="1"
-                  onChange={(e) => setSeats(e.target.value)}
-                />
-              </span>
-            </p>
+            <h3>{service.name}</h3>
+            <p></p>
             <p />
           </div>
         )}
@@ -172,6 +174,22 @@ const PayByCard = () => {
             />
           </div>
         )}
+        {service && type === "Tour" && (
+          <div>
+            <p>PKR {service.Price}</p>
+          </div>
+        )}
+        <p>
+          Seats{" "}
+          <span>
+            <input
+              type="Number"
+              value={seats}
+              placeholder="1"
+              onChange={(e) => setSeats(e.target.value)}
+            />
+          </span>
+        </p>
       </div>
       <div className={styles.Pay}>
         <div className={styles.footer}>
@@ -202,12 +220,27 @@ const PayByCard = () => {
             </button>
           )}
           {alert && (
-            <Alert severity="success">
-              Reservation Successful! - for more info see dashboard/bookings
-            </Alert>
+            <div>
+              <Alert severity="success">
+                Reservation Successful! - for more info see dashboard/bookings
+              </Alert>
+
+              <button
+                className={styles.confirm_booking}
+                onClick={() => payNow()}
+              >
+                PayNow
+              </button>
+              <button
+                className={styles.confirm_booking}
+                onClick={() => payLater()}
+              >
+                PayLater
+              </button>
+            </div>
           )}
         </div>
-        <Payments />
+        {paymentStatus === "paid" && <Payments />}
       </div>
     </div>
   );

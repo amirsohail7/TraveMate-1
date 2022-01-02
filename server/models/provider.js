@@ -46,6 +46,11 @@ const providerSchema = new mongoose.Schema({
       ref: "Tour",
     },
   ],
+  photo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SingleFile",
+    //required: true,
+  },
 
   //timestamps: true
 });

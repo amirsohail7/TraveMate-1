@@ -5,29 +5,19 @@ import { cardShadow, hoverEffect, themeColor } from "../../utils";
 function Info() {
   return (
     <InfoCard>
+      
       <Card>
         <CardContent>
           <Row>
-            <Digit>98</Digit>
-            <InfoContainer>
-              <Title>Rank</Title>
-              <SubTitle>In top 20%</SubTitle>
-            </InfoContainer>
-          </Row>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <Row>
-            <Digit>32</Digit>
+            <Digit>5</Digit>
             <InfoContainer>
               <Title>Bookings</Title>
-              <SubTitle>23 this month</SubTitle>
+              <SubTitle>1 Paid</SubTitle>
             </InfoContainer>
           </Row>
           <Row justify>
             <Badge content="Hotel" glow />
-            <Badge content="Dining" glow />
+            <Badge content="Resturant" glow />
           </Row>
         </CardContent>
       </Card>
@@ -36,9 +26,9 @@ function Info() {
 }
 
 const InfoCard = styled.div`
-  height: 115%;
+  height: 100%;
   width: 14rem;
-  background-color: white;
+  background-color: #1b45ce;
   border-radius: 1rem;
   padding: 1rem;
   color: white;
@@ -46,6 +36,7 @@ const InfoCard = styled.div`
   transition: 0.4s ease-in-out;
   &:hover {
     box-shadow: ${hoverEffect};
+
   }
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     width: 80%;
@@ -53,7 +44,7 @@ const InfoCard = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: rgba(183, 194, 243, 0.3);
+  background-color: rgb(225, 228, 245);
   border-radius: 1rem;
   margin-bottom: 1rem;
 `;

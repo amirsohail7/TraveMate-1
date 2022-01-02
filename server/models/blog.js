@@ -35,6 +35,11 @@ const blogSchema = new mongoose.Schema({
   views: {
     type: Number,
   },
+  photos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MultipleFile",
+    //required: true,
+  },
 
   //timestamps: true
 });

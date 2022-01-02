@@ -70,7 +70,7 @@ export const update = (req, res, next) => {
   Hotel.findOneAndUpdate(
     { _id: req.params.id },
     req.body,
-    { new: true, upsert: false },
+    { new: false, upsert: false },
     function (error, result) {
       if (error) {
         return next(error);

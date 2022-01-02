@@ -29,11 +29,12 @@ import Dashboard from "./components/admin/Dashboard";
 import Crawler from "./components/crawler/Crawler";
 import Hotels from "./Hotels/Hotels";
 import HotelDetails from "./Hotels/HotelDetails";
-import Compare from './Hotels/Compare'
-import ResCompare from './Restaurants/Compare'
+import Compare from "./Hotels/Compare";
+import ResCompare from "./Restaurants/Compare";
 import AttractionDetail from "./components/Attractions/AttractionDetail";
 import Attractions from "./components/Attractions/Attractions";
 import PayByCard from "./components/stripe/PayByCard";
+import Updatebooking from "./components/stripe/Updatebooking";
 
 function App() {
   return (
@@ -46,11 +47,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/tours" component={Tours} />
             <Route path="/tourdetail/:id" exact component={Tourdetails} />
-            <Route
-              path="/destination"
-              exact
-              component={DestinationHome}
-            />
+            <Route path="/destination" exact component={DestinationHome} />
             <Route path="/hotels" component={Hotels} />
             <Route path="/hoteldetail/:id" exact component={HotelDetails} />
             <Route path="/resturants" component={Resturants} />
@@ -78,13 +75,22 @@ function App() {
               exact
               component={Provider}
             />
-            <Route path="/Traveler" component={Traveler} />
+            <Route
+              path="/Traveler/:view/:type?/:id?"
+              exact
+              component={Traveler}
+            />
             <Route path="/ExploreNearby" component={ExploreNearby} />
             <Route path="/admin" component={Dashboard} />
             <Route path="/crawler" component={Crawler} />
-            <Route path="/compare/:id1/:id2/:id3?" exact component={Compare}/>
-            <Route path="/rescompare/:id1/:id2/:id3?" exact component={ResCompare}/>
+            <Route path="/compare/:id1/:id2/:id3?" exact component={Compare} />
+            <Route
+              path="/rescompare/:id1/:id2/:id3?"
+              exact
+              component={ResCompare}
+            />
             <Route path="/book/:type/:id" component={PayByCard} />
+            <Route path="/updatebooking" component={Updatebooking} />
           </Switch>
         </Router>
       </HotelProvider>

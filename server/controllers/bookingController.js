@@ -51,6 +51,19 @@ export const services_bookings = (req, res) => {
     });
 };
 
+export const traveler_bookings = (req, res) => {
+  Booking.find({ traveler: req.params.tid })
+    .populate("provider")
+    .populate("traveler")
+    .populate("service")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 //POST Routes
 
 export const create_booking = (req, res, next) => {
@@ -70,7 +83,7 @@ export const create_booking = (req, res, next) => {
 //PUT Routes
 
 export const update = (req, res, next) => {
-  Hotel.findOneAndUpdate(
+  Booking.findOneAndUpdate(
     { _id: req.params.id },
     req.body,
     { new: false, upsert: false },

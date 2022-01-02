@@ -6,9 +6,10 @@ import formCSS from "./forms.module.css";
 import { multipleFilesUpload } from "../../../../shared/uploads";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { FormControlUnstyledContext } from "@mui/material";
 
 const AddTourForum = () => {
-  const [Name, setName] = useState(" ");
+  const [name, setName] = useState(" ");
   const [Destination, setDestination] = useState(" ");
   const [Departure, setDeparture] = useState(" ");
   const [DepartureLocation, setDepartureLocation] = useState(" ");
@@ -53,7 +54,7 @@ const AddTourForum = () => {
     e.preventDefault();
 
     const tour = {
-      Name,
+      name,
       Destination,
       Departure,
       DepartureLocation,
@@ -64,11 +65,23 @@ const AddTourForum = () => {
       photos,
     };
 
-    axios.post("http://localhost:3040/tour/create_tour", tour).then(() => {
-      history.push("/ProviderDash");
-      alert("Tour Created Successfully!");
-      console.log(tour);
-    });
+    axios
+      .post("http://localhost:3040/tour/create_tour", tour)
+      .then((response) => {
+        console.log(response);
+        let rid = response.data._id;
+        if (response.status === 200) {
+          axios
+            .put(`http://localhost:3040/provider/tour/${provider}/${rid}`)
+            .then((res) => {
+              history.push("/Provider/Dashboard");
+              alert("Tour Created Successfully!");
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -90,7 +103,7 @@ const AddTourForum = () => {
               className={formCSS.form__input}
               type="text"
               required
-              value={Name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>

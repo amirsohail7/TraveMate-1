@@ -11,7 +11,7 @@ export async function singleFileUpload(req, res, next) {
       fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
     });
     await file.save();
-    res.status(201).send("File Uploaded Successfully");
+    res.status(201).send(file);
   } catch (error) {
     res.status(400).send(error.message);
   }

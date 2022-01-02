@@ -106,9 +106,20 @@ const AddRestaurantForum = () => {
 
     axios
       .post("http://localhost:3040/restaurant/create", restaurant)
-      .then(() => {
-        // history.push('/')
-        console.log("data is posted");
+      .then((response) => {
+        console.log(response);
+        let rid = response.data._id;
+        if (response.status === 200) {
+          axios
+            .put(`http://localhost:3040/provider/restaurant/${provider}/${rid}`)
+            .then((res) => {
+              history.push("/Provider/Dashboard");
+              alert("resturant Created Successfully!");
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   return (

@@ -12,9 +12,28 @@ function WriteReview(_props) {
   const author = localStorage.getItem("userID");
 
   const pushReview = (rid) => {
-    axios.put(
-      `http://localhost:3040/${serviceType}/${service}/AddReview/${rid}`
-    );
+    axios
+      .put(`http://localhost:3040/${serviceType}/${service}/AddReview/${rid}`)
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const updateRating = () => {
+    let newrating =
+      (parseInt(rating) + parseInt(_props.rating)) / (_props.reviews + 1);
+    console.log(newrating);
+    setRating(newrating);
+    let reviewsCount = _props.reviews + 1;
+    const updates = {
+      rating,
+      reviewsCount,
+    };
+    axios
+      .put(`http://localhost:3040/${serviceType}/update/${service}`, updates)
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -32,7 +51,11 @@ function WriteReview(_props) {
       .then((response) => {
         console.log("data is posted");
         pushReview(response.data._id);
+        updateRating();
         alert("Review Submited");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 

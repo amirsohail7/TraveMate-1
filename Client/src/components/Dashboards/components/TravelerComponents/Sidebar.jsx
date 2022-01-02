@@ -1,37 +1,38 @@
-import React from "react";
+import React ,{useState} from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
-import { AiOutlinePieChart } from "react-icons/ai";
 import Badge from "./Badge";
 import AvatarImage from "../../assets/R.png";
 import { darkThemeColor } from "../../utils";
-function Sidebar() {
+
+
+ function Sidebar() {
+   let username=localStorage.getItem("Name");
+   let DP =localStorage.getItem("DP");
+   
   return (
     <Container>
       <ProfileContainer>
-        <Avatar src={AvatarImage} />
-        <Name>Abdul Hadi</Name>
+        {DP ? <Avatar src={`http://localhost:3040/${DP}`} />:<Avatar src={AvatarImage}/>}
+        
+        <Name> {username}</Name>
+        <Linkspan to="/Traveler/Profile">
         <Badge content="Profile" />
+        </Linkspan>
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <Link>
+          <Linkspan to="/Traveler/Dashboard">
             <RiHomeLine />
             <h3>Dashboard</h3>
-          </Link>
-          <Link>
-            <RiFileCopyLine />
-            <h3>Reviews</h3>
-          </Link>
-          <Link>
+          </Linkspan>
+          
+          <Linkspan to="/Traveler/Bookings">
             <FaWallet />
-            <h3>Payments</h3>
-          </Link>
-          <Link>
-            <AiOutlinePieChart />
-            <h3>Reports</h3>
-          </Link>
+            <h3>Bookings</h3>
+          </Linkspan>
         </Links>
         <ContactContainer>
           <span>Having troubles?</span>
@@ -43,8 +44,8 @@ function Sidebar() {
 }
 
 const Container = styled.div`
-  width: 20%;
-  height: 100% !important;
+  width: 15%;
+  height: 97vh !important;
   
   background-color: #091322;
   display: flex;
@@ -81,7 +82,7 @@ const LinksContainer = styled.div`
   background-color: ${darkThemeColor};
   height: 100%;
   width: 100%;
-  border-radius: 2rem;
+  //border-radius: 2rem;
 `;
 
 const Links = styled.ul`
@@ -92,11 +93,11 @@ const Links = styled.ul`
   height: 60%;
 `;
 
-const Link = styled.li`
-  margin-left: 25%;
+const Linkspan = styled(Link)`
   margin-bottom: 2rem;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.3rem;
   color: #e4e4e4;
   cursor: pointer;
   h3 {
@@ -104,21 +105,21 @@ const Link = styled.li`
   }
   svg {
     font-size: 1.1rem;
-    margin-top: 13%;
+    margin-top: 15%;
   }
 `;
 
 const ContactContainer = styled.div`
-  width: 60%;
+  width: 85%;
   background-color: #091322;
   color: #c4c4c4;
-  height: 20%;
   margin: auto;
-  margin-top: 13%;
+  margin-top: 10%;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  font-size: smaller;
 
   a {
     color: white;
@@ -131,3 +132,4 @@ const ContactContainer = styled.div`
 `;
 
 export default Sidebar;
+

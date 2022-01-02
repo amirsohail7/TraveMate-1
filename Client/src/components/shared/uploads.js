@@ -4,14 +4,17 @@ const apiUrl = "http://localhost:3040/api/";
 
 export const singleFileUpload = async (data, options) => {
   try {
-    await axios.post(apiUrl + "singleFile", data, options);
+    const response = await axios.post(apiUrl + "singleFile", data, options);
+    let Id = response.data;
+    console.log(Id);
+    return Id._id;
   } catch (error) {
     throw error;
   }
 };
-export const getSingleFiles = async () => {
+export const getSingleFiles = async (id) => {
   try {
-    const { data } = await axios.get(apiUrl + "getSingleFiles");
+    const { data } = await axios.get(apiUrl + `${id}`);
     return data;
   } catch (error) {
     throw error;

@@ -20,6 +20,11 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logout = () => {
+    localStorage.clear();
+  };
+
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -62,37 +67,36 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-      {/* use Link tag here and use conditional route with respective to user type for dashboard */}
-      <Link to="/Provider/Dashboard">
-        <MenuItem>
-          <DashboardIcon sx={{ width: 32, height: 32, ml: -0.5, mr: 1 }} />
-          {" Dashboard"}
-          {/* prettier is updating this static text with brackets, dunno why  */}
-        </MenuItem>
+        {/* use Link tag here and use conditional route with respective to user type for dashboard */}
+        <Link to="/Provider/Dashboard">
+          <MenuItem>
+            <DashboardIcon sx={{ width: 32, height: 32, ml: -0.5, mr: 1 }} />
+            {" Dashboard"}
+            {/* prettier is updating this static text with brackets, dunno why  */}
+          </MenuItem>
         </Link>
         <Link to="">
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+          <MenuItem>
+            <Avatar /> My account
+          </MenuItem>
         </Link>
         <Divider />
         <Link to="">
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        </Link>
-        {/* when logout is clicked render sign in button in navibar in place of account menu */}
-        
           <MenuItem>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <Settings fontSize="small" />
             </ListItemIcon>
-            Logout
+            Settings
           </MenuItem>
-        
+        </Link>
+        {/* when logout is clicked render sign in button in navibar in place of account menu */}
+
+        <MenuItem onClick={() => logout()}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );

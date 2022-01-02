@@ -60,7 +60,7 @@ function Services(_props) {
               {_props.Tours && _props.Tours.map((Tours)=>
                 <Service key={Tours._id}>
                   <a href={`http://localhost:3000/tourdetail/${Tours._id}`}> 
-                  {Tours.Name}
+                  {Tours.name}
                   </a>
                   <span><Link to={`/Provider/update/tour/${Tours._id}`}><FaEdit/></Link></span>
                 </Service>

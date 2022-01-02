@@ -2,56 +2,113 @@
   box-sizing: border-box;
 }
 
-.blogbg {
-  background-image: url("/images/blogbg.jpg");
+.container {
+  display: grid;
+  grid-template-columns: 1.9fr 0.1fr 1.9fr;
+  grid-template-rows: 0.6fr 0.3fr 2.1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Header Header Header"
+    "Description Description Description"
+    "FormGrid FormGrid FormGrid";
+}
+
+.Description {
+  grid-area: Description;
+  justify-self: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.Header {
+  grid-area: Header;
+  background-image: url("/images/hotel.jpg");
   background-size: cover;
   background-clip: content-box;
-  padding: 0.5%;
   border: none;
 }
 
-.container {
-  padding: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.Header_Tour {
+  grid-area: Header;
+  background-image: url("/images/addtour.jpg");
+  height: 40vh;
+  background-size: cover;
+  background-clip: content-box;
+  border: none;
 }
 
-.form {
+.Header_Rest {
+  grid-area: Header;
+  background-image: url("/images/restaurant.jpg");
+  height: 40vh;
+  background-size: cover;
+  background-clip: content-box;
+  border: none;
+}
+
+.Header_Blog {
+  grid-area: Header;
+  background-image: url("/images/blogbg.jpg");
+  height: 40vh;
+  background-size: cover;
+  background-clip: content-box;
+  border: none;
+}
+
+.FormGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.1fr 1.5fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "FieldsLeft . FieldsRight"
+    "FieldsLeft . FieldsRight"
+    "FieldsLeft . FieldsRight";
+  grid-area: FormGrid;
+
   font-size: 16px;
   margin: 15px 30px;
   padding: 7px;
-  background: #000000a2;
-  width: 80%;
 }
 
-.form * {
+.FieldsLeft {
+  grid-area: FieldsLeft;
+  margin-left: 20%;
+}
+
+.FieldsRight {
+  grid-area: FieldsRight;
+  margin-left: 15%;
+}
+
+.FormGrid * {
   line-height: 1.5;
 }
 
 .form__title {
-  background-color: #000000;
-  color: #ffffff;
-  font-size: 2.5em;
-  font-weight: 800;
-  margin: 20px 20px;
-  padding: 20px;
-  width: 100%;
+  color: #000000;
+  font-size: 2em;
+  font-weight: 600;
+  margin: 20px 60px;
+  padding-top: 20px;
 }
 
 .form__label {
-  color: #ffffff;
+  color: #000000;
   margin: 7px 7px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.form .form__item {
+.form__item {
   display: flex;
   flex-direction: column;
 }
 
 .form__item > * {
   align-self: flex-start;
+  margin: 6px 40px;
 }
 
 .form__input {
@@ -61,28 +118,33 @@
   max-width: 425px;
 
   padding: 0.8em;
-  font-size: 0.9em;
+  font-size: 0.85em;
 
   outline: none;
-  border: 1px solid #000000;
+  border: 0.5px solid #4332dbe1;
   border-radius: 4px;
-  background: #ebd5d5cb;
+  background: #fdfdfdcb;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form__input:focus {
+  background-color: #4e3edd15;
 }
 
 .btn {
   font-weight: 600;
   font-size: 0.9em;
   padding: 5px 15px;
-  margin: 25px 0;
+  margin: 25px;
 
   color: #ffffff;
   background: #14b64a;
-  border: 2px solid #0fa942;
+  border: none;
   border-radius: 5px;
 
   cursor: pointer;
   outline: none;
+  width: 120px;
 }
 
 .btn:active {
@@ -91,6 +153,22 @@
 }
 
 .btn:hover {
-  border: 3px solid #00000079;
-  background-color: #1688f3;
+  background: rgb(71, 112, 245);
+}
+
+.muted {
+  color: gray;
+  font-size: 14px;
+}
+
+.sidebyside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 7% 17% 0 7%;
+}
+.imageUpload {
+  width: 120px;
+  height: 120px;
+  margin-left: 50px;
 }

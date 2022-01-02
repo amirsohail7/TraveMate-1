@@ -11,7 +11,7 @@ function Earnings() {
           <IoStatsChart />
         </Chart>
         <EarningsText>Earnings</EarningsText>
-        <Earning>PKR 70,890</Earning>
+        <Earning>PKR 49,000</Earning>
       </CardContent>
     </EarningsCard>
   );
@@ -21,7 +21,7 @@ const EarningsCard = styled.div`
   height: 100%;
   width: 14rem;
   background-color: ${themeColor};
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
   color: white;
   transition: 0.4s ease-in-out;

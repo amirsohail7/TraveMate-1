@@ -3,6 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import formCSS from "./forms.module.css";
+import { singleFileUpload } from "../../../../shared/uploads";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const UpdateProfile = (_props) => {
   const history = useHistory();
@@ -13,6 +16,32 @@ const UpdateProfile = (_props) => {
   const [email, setEmail] = useState(_props.provider.email);
   const [password, setPassword] = useState(_props.provider.password);
   const [phone, setPhone] = useState("");
+  const [photo, setPhoto] = useState();
+  //
+  const [singleFile, setSingleFile] = useState("");
+  const [singleProgress, setSingleProgress] = useState(0);
+
+  const SingleFileChange = (e) => {
+    setSingleFile(e.target.files[0]);
+    setSingleProgress(0);
+  };
+
+  const singleFileOptions = {
+    onUploadProgress: (progressEvent) => {
+      const { loaded, total } = progressEvent;
+      const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
+      setSingleProgress(percentage);
+    },
+  };
+
+  const uploadSingleFile = async () => {
+    const formData = new FormData();
+    formData.append("file", singleFile);
+    const ID = await singleFileUpload(formData, singleFileOptions);
+    setPhoto(ID);
+  };
+
+  //
 
   const provider = {
     username,
@@ -32,16 +61,51 @@ const UpdateProfile = (_props) => {
         `http://localhost:3040/provider/update/${_props.provider._id}`,
         provider
       )
-      .then(() => {
+      .then((response) => {
         console.log("data is posted");
         console.log(provider);
-        history.push("/Provider/Dashboard");
+        if (response.status === 200) {
+          alert("details updated");
+          history.push("/provider/Dashboard");
+        }
       });
   };
 
   return (
     <div className={formCSS.bg}>
       <h2 className={formCSS.form__title}>Update Profile</h2>
+
+      <div className={formCSS.form__item}>
+        <label>Profile Picture</label>
+        <input type="file" onChange={(e) => SingleFileChange(e)} />
+      </div>
+      <div className={formCSS.sidebyside}>
+        <button
+          type="button"
+          className={formCSS.btn}
+          onClick={() => uploadSingleFile()}
+        >
+          Upload
+        </button>
+
+        <div className={formCSS.imageUpload}>
+          <CircularProgressbar
+            value={singleProgress}
+            text={`${singleProgress}%`}
+            styles={buildStyles({
+              rotation: 0.25,
+              strokeLinecap: "butt",
+              textSize: "16px",
+              pathTransitionDuration: 0.5,
+              pathColor: `rgba(255, 136, 136, ${singleProgress / 100})`,
+              textColor: "#f88",
+              trailColor: "#d6d6d6",
+              backgroundColor: "#3e98c7",
+            })}
+          />
+        </div>
+      </div>
+
       <form className={formCSS.FormGrid} onSubmit={handleSubmit}>
         <div className={formCSS.FieldsLeft}>
           <p>Account Information</p>

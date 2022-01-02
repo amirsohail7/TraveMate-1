@@ -117,10 +117,23 @@ const AddHotelForum = () => {
       photos,
     };
     console.log(hotel);
-    axios.post("http://localhost:3040/hotel/create_hotel", hotel).then(() => {
-      history.push("/ProviderDash");
-      alert("Tour Created Successfully!");
-    });
+    axios
+      .post("http://localhost:3040/hotel/create_hotel", hotel)
+      .then((response) => {
+        console.log(response);
+        let rid = response.data._id;
+        if (response.status === 200) {
+          axios
+            .put(`http://localhost:3040/provider/hotel/${provider}/${rid}`)
+            .then((res) => {
+              history.push("/Provider/Dashboard");
+              alert("hotel Created Successfully!");
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className={formCSS.container}>
