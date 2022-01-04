@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import css from "../home/Cards.module.css"
+import css from "./Cards.module.css"
 
 const RestaurantCard = ({restaurants}) => {
   console.log(restaurants);

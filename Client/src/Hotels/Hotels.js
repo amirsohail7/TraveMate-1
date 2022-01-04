@@ -16,6 +16,7 @@ import {
   byRatingAsc,
   byRatingDsc,
 } from "../components/shared/sort";
+import Search from "./SearchHotels";
 
 const Hotels = () => {
   const [val, setVal] = useState([1000, 15000]);
@@ -45,6 +46,7 @@ const Hotels = () => {
     isPending,
     data: hotels,
   } = useFetch("http://localhost:3040/hotel/");
+  /* console.log(hotels) */
 
   const filter = () => {
     if (order === "Name asc") {
@@ -97,6 +99,9 @@ const Hotels = () => {
           <button className={css.btn} onClick={() => filter()}>
             Apply Filter
           </button>
+          <div className={css.search_bar}>
+          <Search/>
+          </div>
         </div>
         <div className={css.right_side}>
           <select

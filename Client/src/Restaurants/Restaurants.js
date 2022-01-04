@@ -17,6 +17,7 @@ import {
   byRatingDsc,
 } from "../components/shared/sort";
 import axios from "axios";
+import Search from './SearchRestaurants'
 
 const Restaurants = () => {
   const [val, setVal] = useState([1000, 15000]);
@@ -218,6 +219,9 @@ const Restaurants = () => {
           <button className={css.btn} onClick={() => handleClick()}>
             Apply Filter
           </button>
+          <div className={css.search_bar}>
+          <Search/>
+          </div>
         </div>
         <div className={css.right_side}>
           <select

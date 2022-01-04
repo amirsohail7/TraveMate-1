@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import './Crawler.css';
+import css from "./Crawler.module.css";
 import CrawlerItem from './CrawlerItem';
 import axios from "axios";
 
@@ -18,11 +18,11 @@ const [packages,setPackages]=useState(null);
   }, []);
 
   return (
-    <div className='cards'>
+    <div className={css.cards}>
       <h1>Crawled Tour packages!</h1>
-      <div className='cards__container'>
-        <div className='cards__wrapper'>
-          <ul className='cards__items'>
+      <div className={css.cards__container}>
+        <div className={css.cards__wrapper}>
+          <ul className={css.cards__items}>
           {packages && <CrawlerItem packages={packages} />}
           </ul>
         </div>

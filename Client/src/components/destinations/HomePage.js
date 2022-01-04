@@ -6,7 +6,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import css from '../home/Cards.module.css'
 
-let hotelAPI = "http://localhost:3040/hotelRec/recommendHotel/13";
+let hotelAPI = "http://localhost:3040/hotelRec/recommendHotel/39";
 let RestaurantAPI =
   "http://localhost:3040/restaurantRec/recommendRestaurant/39";
 const requestOne = axios.get(hotelAPI);

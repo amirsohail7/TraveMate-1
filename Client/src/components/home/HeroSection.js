@@ -10,7 +10,7 @@ function HeroSection() {
     <div className='hero-container'>
       <h1>ADVENTURE AWAITS</h1>
       <p>What are you waiting for?</p>
-      <LocationSearch/>
+      
       <div className='hero-btns'>
         <Button
           link='/destination'

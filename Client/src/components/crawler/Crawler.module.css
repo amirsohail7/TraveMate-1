@@ -1,4 +1,4 @@
-.dest_cards {
+.cards {
   padding: 4rem;
   background: #fff;
 }
@@ -7,8 +7,9 @@ h1 {
   text-align: center;
 }
 
-.dest_cards__container {
+.cards__container {
   display: flex;
+  justify-content: center;
   flex-flow: column;
   align-items: center;
   max-width: 1120px;
@@ -16,23 +17,20 @@ h1 {
   margin: 0 auto;
 }
 
-.dest_cards__wrapper {
+.cards__wrapper {
   position: relative;
   margin: 50px 0 45px;
 }
 
-.dest_cards__items {
-  margin-bottom: 24px;
-}
-
-.dest_cards__items {
-  display: flex;
+.cards__items {
   flex: 1;
+  margin-bottom: 24px;
   margin: 0 1rem;
   border-radius: 10px;
+  list-style: none;
 }
 
-.dest_cards__item__link {
+.cards__item__link {
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -41,10 +39,11 @@ h1 {
   filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
   border-radius: 10px;
   overflow: hidden;
-  text-decoration: none;
+  /* text-decoration: none;
+  color: black; */
 }
 
-.cards__item__pic-wrap {
+.cards__item__pic_wrap {
   position: relative;
   width: 100%;
   padding-top: 67%;
@@ -56,7 +55,7 @@ h1 {
   animation-duration: 2s;
 }
 
-.cards__item__pic-wrap::after {
+.cards__item__pic_wrap::after {
   content: attr(data-category);
   position: absolute;
   bottom: 0;
@@ -89,11 +88,12 @@ h1 {
   transform: scale(1.1);
 }
 
-.dest_cards__item__info {
+.cards__item__info {
   padding: 20px 30px 30px;
+  color: black;
 }
 
-.dest_cards__item__text {
+.cards__item__text {
   color: #252e48;
   font-size: 18px;
   line-height: 24px;
@@ -107,7 +107,7 @@ h1 {
 
 @media only screen and (min-width: 1024px) {
   .cards__items {
-    display: flex;
+    display: block;
   }
 }
 

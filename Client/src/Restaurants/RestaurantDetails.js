@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./RestaurantDetail.css";
+import css from "./RestaurantDetail.module.css";
 import { Rating } from "@mui/material";
 import GoogleMapComponent from "../components/shared/GoogleMapComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -42,9 +42,9 @@ const RestaurantDetails = () => {
 
   return (
     <div>
-      <div className="container">
-        <div className="Header">
-          <div className="coloumn1">
+      <div className={css.container}>
+        <div className={css.Header}>
+          <div className={css.coloumn1}>
             <h2>
               <span>
                 <ArrowBackIcon />{" "}
@@ -53,9 +53,9 @@ const RestaurantDetails = () => {
             </h2>
             <h2>{restaurantDetail.name}</h2>
           </div>
-          <div className="coloumn3">
+          <div className={module.coloumn3}>
             <button
-              className="paymentbutton"
+              className={css.paymentbutton}
               onClick={() => handle_reservation()}
             >
               Make Reservations
@@ -63,9 +63,9 @@ const RestaurantDetails = () => {
             {reservation && <Reservations restaurant={restaurantDetail} />}
           </div>
         </div>
-        <div className="Info">
-          <div className="coloumn1">
-            <h2 className="title">Restaurant Information</h2>
+        <div className={css.Info}>
+          <div className={css.coloumn1}>
+            <h2 className={css.title}>Restaurant Information</h2>
             <p>
               <span>
                 <EmailIcon />
@@ -85,8 +85,8 @@ const RestaurantDetails = () => {
               Address {restaurantDetail.address}
             </p>
           </div>
-          <div className="coloumn2">
-            <p className="muted">{restaurantDetail.priceLevel}</p>
+          <div className={css.coloumn2}>
+            <p className={css.muted}>{restaurantDetail.priceLevel}</p>
             <Rating
               name="read-only"
               value={restaurantDetail.rating}
@@ -95,31 +95,31 @@ const RestaurantDetails = () => {
             />
             <p>Reviews {restaurantDetail.reviewsCount}</p>
           </div>
-          <div className="coloumn3">
+          <div className={css.coloumn3}>
             <FetchWeather
               lat={restaurantDetail.latitude}
               lon={restaurantDetail.longitude}
             />
           </div>
         </div>
-        <div className="Bottom_half">
-          <div className="sidebyside">
-            <div className="Photos">
+        <div className={css.Bottom_half}>
+          <div className={css.sidebyside}>
+            <div className={css.Photos}>
               <h2>Gallery</h2>
               <DisplayImagesList photos={restaurantDetail.photos} />
             </div>
 
-            <div className="map-container">
+            <div className={css.map_container}>
               <GoogleMapComponent
                 lng={restaurantDetail.longitude}
                 lat={restaurantDetail.latitude}
               />
             </div>
           </div>
-          <div className="Reviews">
+          <div className={css.Reviews}>
             <WriteReview
               service={restaurantDetail._id}
-              serviceType="restaurantDetail"
+              serviceType={css.restaurantDetail}
             />
             <h2>Traveler Feedback</h2>
             <ServiceReview Reviews={restaurantDetail.reviews} />

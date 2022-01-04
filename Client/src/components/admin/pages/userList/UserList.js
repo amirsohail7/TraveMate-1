@@ -1,45 +1,57 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import "./userList.css";
+import axios from "axios";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function UserList() {
-  const [data, setData] = useState(userRows);
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+const UserList=()=> {
+  const [traveler, setTraveler] = useState(userRows);
   
+  const handleDelete = (id) => {
+    setTraveler(traveler.filter((item) => item.id !== id));
+  };
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:3040/traveler")
+    .then((response)=>{
+      setTraveler(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  }, []);
+
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
-      field: "user",
+      field: "username",
       headerName: "User",
       width: 200,
-      renderCell: (params) => {
+      /* renderCell: (params) => {
         return (
           <div className="userListUser">
             <img className="userListImg" src={params.row.avatar} alt="" />
             {params.row.username}
           </div>
         );
-      },
+      }, */
     },
     { field: "email", headerName: "Email", width: 200 },
-    {
+    /* {
       field: "status",
       headerName: "Status",
       width: 120,
-    },
-    {
+    }, */
+    /* {
       field: "transaction",
       headerName: "Transaction Volume",
       width: 160,
-    },
-    {
+    }, */
+    /* {
       field: "action",
       headerName: "Action",
       width: 150,
@@ -56,13 +68,13 @@ export default function UserList() {
           </>
         );
       },
-    },
+    } */,
   ];
 
   return (
     <div className="userList">
       <DataGrid
-        rows={data}
+        rows={traveler}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
@@ -71,3 +83,4 @@ export default function UserList() {
     </div>
   );
 }
+export default UserList;
