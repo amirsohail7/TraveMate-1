@@ -9,10 +9,12 @@ import AvatarImage from "../../assets/R.png";
 import { darkThemeColor } from "../../utils";
 
  function Sidebar() {
+  let username=localStorage.getItem("Name");
+  let DP =localStorage.getItem("DP");
   return (
     <Container>
       <ProfileContainer>
-        <Avatar src={AvatarImage} />
+      {DP ? <Avatar src={`http://localhost:3040/${DP}`} />:<Avatar src={AvatarImage}/>}
         <Name>Abdul Hadi</Name>
         <Linkspan to="/Provider/Profile">
         <Badge content="Profile" />

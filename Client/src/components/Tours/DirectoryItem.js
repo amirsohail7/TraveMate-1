@@ -9,7 +9,7 @@ const DirectoryItem = ({ tours }) => {
       {tours.map((tour) => (
         <div className="item_preview" key={tour._id}>
           <Link to={`/tourdetail/${tour._id}`}>
-            <h2>{tour.Name}</h2>
+            <h2>{tour.name}</h2>
 
             <div className="info">
               <p>Destination {tour.Destination}</p>
@@ -20,9 +20,6 @@ const DirectoryItem = ({ tours }) => {
           </Link>
           <div className="side">
             <p>PKR {tour.Price}</p>
-            <Link to={`/test`}>
-              <button>Book Now</button>
-            </Link>
           </div>
         </div>
       ))}

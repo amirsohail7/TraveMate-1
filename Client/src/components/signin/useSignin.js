@@ -42,6 +42,9 @@ const useSignin = (callback, validate) => {
         localStorage.setItem("userID", provider._id);
         localStorage.setItem("Name", provider.username);
         localStorage.setItem("isLoggedIn", true);
+        if (provider.photo) {
+          localStorage.setItem("DP", provider.photo.filePath);
+        }
       });
     }
 
@@ -61,6 +64,33 @@ const useSignin = (callback, validate) => {
         localStorage.setItem("userID", travelers._id);
         localStorage.setItem("Name", travelers.username);
         localStorage.setItem("isLoggedIn", true);
+        if (travelers.photo) {
+          localStorage.setItem("DP", travelers.photo.filePath);
+        }
+      });
+    }
+
+    //ADMIN
+
+    if (values.userType === "Admin") {
+      axios.get("http://localhost:3040/admin/", values).then((res) => {
+        console.log("Admin fetched");
+        console.log(res.data);
+
+        let users = res.data;
+        let admins = users.find(
+          (users) =>
+            users.email === values.email && users.password === values.password
+        );
+        console.log("admins", admins);
+
+        localStorage.setItem("userType", "Admin");
+        localStorage.setItem("userID", admins._id);
+        localStorage.setItem("Name", admins.username);
+        localStorage.setItem("isLoggedIn", true);
+        if (admins.photo) {
+          localStorage.setItem("DP", admins.photo.filePath);
+        }
       });
     }
   };

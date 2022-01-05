@@ -1,82 +1,111 @@
-import React from "react";
+import React , {useState,useEffect} from 'react';
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import AvatarImage from "../../assets/room-6.jpeg";
-import AvatarImage2 from "../../assets/room-4.jpeg";
-import { cardShadow, hoverEffect, themeColor } from "../../utils";
+import { themeColor, hoverEffect } from "../../utils";
+import Badge from "./Badge";
 
-function Bookings() {
-  return (
-    <YourBookings>
-      <Booking>
-        <Avatar>
-          <img src={AvatarImage} alt="" />
-        </Avatar>
-        <Detail>
-          <Title>Marriot</Title>
-          <SubTitle>26 - 29 October,2021</SubTitle>
-        </Detail>
-      </Booking>
-      <Booking>
-        <Avatar>
-          <img src={AvatarImage2} alt="" />
-        </Avatar>
-        <Detail>
-          <Title>Pearl Continental</Title>
-          <SubTitle>1-3 November,2021</SubTitle>
-        </Detail>
-      </Booking>
-      <AllBookings>See all bookings</AllBookings>
-    </YourBookings>
-  );
+
+import axios from "axios";
+
+function Booking(){
+    const [bookings , setBookings]=useState();
+    const id = localStorage.getItem("userID");
+
+    useEffect(() => {
+        axios
+          .get(`http://localhost:3040/booking/traveler/${id}`)
+          .then((response) => {
+            setBookings(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
+
+
+    return(
+        <Container>
+            <TitleText>Bookings</TitleText>
+            <SubContainer>
+
+            {bookings && bookings.map((booking)=>(
+                <BookingCard>
+                    <h3>{booking.service.name}</h3>
+                    <p>{booking.serviceType}</p>
+                    <p>{booking.createdAt}</p>
+                    <p> by : {booking.traveler.username}</p>
+                    <p>to : {booking.provider.company}</p>
+                    <p>{booking.description}</p>
+                    <p>Seats : {booking.seats}</p>
+                    
+                    {booking.serviceType === "Restaurant" && 
+                      <p>Reservation : {booking.time} </p>
+                    }
+                    {booking.serviceType === "Hotel" && 
+                    <div><p>Dates: </p>
+                    <p>{booking.dfrom}</p>
+                    <p>{booking.dto}</p></div>
+                      
+                    }
+
+                    <p>Payment Mode: {booking.paymentType}</p>
+                    {booking.paymentStatus === "paid" &&
+                    <p>Payment status : <span><Badge content="Paid" paid /></span></p>
+                    }
+                    {booking.paymentStatus === "pending" &&
+                    <p>Payment status : <span><Badge content="Pending" pending /></span></p>
+                    }
+                    
+                </BookingCard>
+            ))}
+            </SubContainer>
+    </Container>
+    );
 }
 
-const YourBookings = styled.div`
-  height: 70%;
-  background-color: white;
-  margin: 0;
+const Container = styled.div`
+  width: 85%;
+  background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%);
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin: 1rem 8rem 1rem 4rem;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem 0 0 0;
+  }
+`;
+
+const BookingCard = styled.div`
+  height: max-content;
+  width: 20rem;
+  margin:1rem;
+  background-color: whitesmoke;
   padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: ${cardShadow};
+  
+  color: #8f8f8f;
+  border: 2px solid lightgray;
   transition: 0.4s ease-in-out;
   &:hover {
     box-shadow: ${hoverEffect};
-  }
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    height: max-content;
-    width: 75%;
-    margin-top: 1rem;
-  }
+  }`;
+
+const TitleText = styled.h2`
+padding:15px;
+
 `;
 
-const Booking = styled.div`
+const SubContainer = styled.div`
+  margin: 0.5rem 0;
+  height: 80%;
+  width: 100%;
   display: flex;
-  align-items: center;
-  margin-bottom: 0.3rem;
-`;
-const Avatar = styled.div`
-  img {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 4rem;
-    
-  }
-`;
-const Detail = styled.div`
-  margin-left: 1rem;
-`;
-const Title = styled.h3`
-  font-weight: 500;
+  flex-direction: row;
+  flex-wrap: wrap;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
-    font-size: 1rem;
+    height: 100%;
   }
-`;
-const SubTitle = styled.h5`
-  font-weight: 300;
-`;
-const AllBookings = styled.h5`
-  text-align: end;
-  color: ${themeColor};
-  cursor: pointer;
 `;
 
-export default Bookings;
+export default Booking;

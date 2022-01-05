@@ -1,46 +1,63 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import Explore from "./Explore";
 import AddBlog from "./AddBlog";
-import JoinSlack from "./JoinSlack";
-import ProjectRecommendation from "./ProjectRecommendation";
-import Bookings from "./Bookings";
-import Invoices from "./Invoices";
+import Earnings from "./Earnings";
+import FetchWeather from "../../../shared/FetchWeather";
 
 function TravelerContent() {
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [status, setStatus] = useState(null);
+
+ 
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setStatus("Geolocation is not supported by your browser");
+    } else {
+      setStatus("Locating...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setStatus(null);
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        () => {
+          setStatus("Unable to retrieve your location");
+        }
+      );
+    }
+  }, []);
+  
+
   return (
     <Container>
       <Navbar />
+      
       <SubContainer>
-        <SectionOne>
-          <ColumnOne1>
-          <TitleText>Your Bookings</TitleText>
-          <Bookings />
-            
-          </ColumnOne1>
-          <ColumnTwo1>
-            <a href="http://localhost:3000/ExploreNearby" >
+        <Row1>
+
+      <a href="http://localhost:3000/ExploreNearby" >
               <Explore/>
             </a>
             <a href="http://localhost:3000/AddBlogform"  >
               <AddBlog/>
             </a>
-          </ColumnTwo1>
-        </SectionOne>
-        <SectionTwo>
-          <ColumnOne2>
-          <TitleText>Pending Booking Approval</TitleText>
-            <ProjectRecommendation />
-          </ColumnOne2>
-          <ColumnTwo2>
-          <InvoiceContainer>
-              <TitleText>Recent Invoices</TitleText>
-              <Invoices />
-            </InvoiceContainer>
-            <JoinSlack />
-          </ColumnTwo2>
-        </SectionTwo>
+          
+          <Coloumn2>
+              {latitude && longitude ?
+              <FetchWeather
+                    lat={latitude}
+                    lon={longitude}
+                  /> : <p>{status}</p>
+              }
+          </Coloumn2>
+
+      </Row1>
+      
+          
       </SubContainer>
     </Container>
   );
@@ -51,7 +68,7 @@ const Container = styled.div`
   background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%);
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;
-  margin: 1rem 8rem 1rem 4rem;
+  margin: 1rem 4rem 1rem 4rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     display: flex;
     flex-direction: column;
@@ -66,91 +83,41 @@ const SubContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     height: 100%;
   }
 `;
-const SectionOne = styled.div`
+
+const Coloumn2 = styled.div`
   display: flex;
+  flex-direction:column;
   justify-content: space-between;
-  height: 40%;
-  gap: 2rem;
+  height: 100%;
+  gap: 1rem;
   width: 100%;
+  padding-right:15%;
+  padding-left:15%;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     flex-direction: column;
     align-items: center;
     height: max-content;
   }
 `;
-const ColumnTwo1 = styled.div`
-  display: flex;
-  gap: 3rem;
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-  }
+
+
+const Row1 = styled.div`
+  display:flex;
+  flex-direction:row;
+  height:40%;
+  gap:1rem;
+  margin-top:3%;
 `;
 
-const ColumnOne1 = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 105%;
-  width: 100%;
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    height: max-content;
-    justify-content: center;
-    align-items: center;
-  }
+
+const Row2 = styled.div`
+ width:40%;
 `;
 
-const TitleText = styled.h3`
-  height: 20%;
-  /* padding-top */
-`;
-
-const SectionTwo = styled.div`
-  display: flex;
-  gap: 2rem;
-  height: 26vh;
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    flex-direction: column;
-    height: max-content;
-    width: 100%;
-  }
-`;
-const ColumnOne2 = styled.div`
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-  }
-`;
-const InvoiceContainer = styled.div`
-  height: 60%;
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    height: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-  }
-`;
-
-const ColumnTwo2 = styled.div`
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-  }
-`;
 
 export default TravelerContent;

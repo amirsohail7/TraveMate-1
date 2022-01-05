@@ -17,6 +17,7 @@ export const all_providers_detailed = (req, res) => {
     .populate("Restaurant")
     .populate("Hotel")
     .populate("Tours")
+    .populate("photo")
     .then((result) => {
       res.send(result);
     })
@@ -30,6 +31,7 @@ export const specific_provider = (req, res) => {
     .populate("Restaurant")
     .populate("Hotel")
     .populate("Tours")
+    .populate("photo")
     .then((result) => {
       res.send(result);
     })
@@ -56,11 +58,50 @@ export const create_provider = (req, res, next) => {
 
 //PUT Routes
 
-export const add_service = (req, res, next) => {
+export const update = (req, res, next) => {
   Provider.findOneAndUpdate(
     { _id: req.params.id },
     req.body,
     { new: false, upsert: false },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const add_restaurant = (req, res, next) => {
+  Provider.findOneAndUpdate(
+    { _id: req.params.sid },
+    { $addToSet: { Restaurant: [req.params.rid] } },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const add_hotel = (req, res, next) => {
+  Provider.findOneAndUpdate(
+    { _id: req.params.sid },
+    { $addToSet: { Hotel: [req.params.rid] } },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
+
+export const add_tour = (req, res, next) => {
+  Provider.findOneAndUpdate(
+    { _id: req.params.sid },
+    { $addToSet: { Tours: [req.params.rid] } },
     function (error, result) {
       if (error) {
         return next(error);

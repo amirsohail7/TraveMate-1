@@ -12,7 +12,7 @@ const DirectoryItem = ({ hotels }) => {
     let data = toCompare;
     data.push(e.target.value);
     setToCompare(data);
-    if (toCompare.length > 2) {
+    if (toCompare.length > 1) {
       history.push(`/compare/${toCompare[0]}/${toCompare[1]}`);
     }
     console.log(toCompare);

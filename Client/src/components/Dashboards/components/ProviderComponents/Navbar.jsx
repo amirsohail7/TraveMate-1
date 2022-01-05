@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 function Navbar() {
+  let username=localStorage.getItem("Name");
   return (
     <NavbarContainer>
       <Text>
         Good morning,
-        <span> Hadi</span>
+        <span> {username}</span>
       </Text>
       <InputContainer>
         <Icon>

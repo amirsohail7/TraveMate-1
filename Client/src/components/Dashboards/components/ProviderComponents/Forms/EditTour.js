@@ -18,7 +18,7 @@ const EditTour = (_props) => {
   const res = arr.find((tour) => tour._id === id);
   console.log(res);
 
-  const [Name, setName] = useState(res.Name);
+  const [name, setName] = useState(res.name);
   const [Destination, setDestination] = useState(res.Destination);
   const [Departure, setDeparture] = useState(res.Departure);
   const [DepartureLocation, setDepartureLocation] = useState(
@@ -64,7 +64,7 @@ const EditTour = (_props) => {
     e.preventDefault();
 
     const tour = {
-      Name,
+      name,
       Destination,
       Departure,
       DepartureLocation,
@@ -100,7 +100,7 @@ const EditTour = (_props) => {
               className={formCSS.form__input}
               type="text"
               required
-              value={Name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>

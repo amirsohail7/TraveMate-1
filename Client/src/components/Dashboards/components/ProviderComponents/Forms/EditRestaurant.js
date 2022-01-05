@@ -126,6 +126,41 @@ const EditRestaurant = (_props) => {
           </span>
         </h2>
       </div>
+      <div className={formCSS.sidebyside}>
+        <div className={formCSS.form__item}>
+          <label className={formCSS.form__label}>Name your Gallery </label>
+          <input
+            className={formCSS.form__input}
+            type="text"
+            value={title}
+            placeholder="Decor,Menu.."
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label>Add images</label>
+          <input type="file" onChange={(e) => MultipleFileChange(e)} multiple />
+        </div>
+        <div className={formCSS.sidebyside}>
+          <button className={formCSS.btn} onClick={() => UploadMultipleFiles()}>
+            Upload
+          </button>
+          <div className={formCSS.imageUpload}>
+            <CircularProgressbar
+              value={multipleProgress}
+              text={`${multipleProgress}%`}
+              styles={buildStyles({
+                rotation: 0.25,
+                strokeLinecap: "butt",
+                textSize: "16px",
+                pathTransitionDuration: 0.5,
+                pathColor: `rgba(255, 136, 136, ${multipleProgress / 100})`,
+                textColor: "#000000",
+                trailColor: "#d6d6d6",
+                backgroundColor: "#3e98c7",
+              })}
+            />
+          </div>
+        </div>
+      </div>
 
       <form className={formCSS.FormGrid} onSubmit={handleSubmit}>
         <div className={formCSS.FieldsLeft}>
@@ -181,48 +216,6 @@ const EditRestaurant = (_props) => {
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
             />
-          </div>
-
-          <div className={formCSS.form__item}>
-            <label className={formCSS.form__label}>Name your Gallery </label>
-            <input
-              className={formCSS.form__input}
-              type="text"
-              value={title}
-              placeholder="Decor,Menu.."
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <label>Add images</label>
-            <input
-              type="file"
-              onChange={(e) => MultipleFileChange(e)}
-              multiple
-            />
-
-            <div className={formCSS.sidebyside}>
-              <button
-                className={formCSS.btn}
-                onClick={() => UploadMultipleFiles()}
-              >
-                Upload
-              </button>
-              <div className={formCSS.imageUpload}>
-                <CircularProgressbar
-                  value={multipleProgress}
-                  text={`${multipleProgress}%`}
-                  styles={buildStyles({
-                    rotation: 0.25,
-                    strokeLinecap: "butt",
-                    textSize: "16px",
-                    pathTransitionDuration: 0.5,
-                    pathColor: `rgba(255, 136, 136, ${multipleProgress / 100})`,
-                    textColor: "#000000",
-                    trailColor: "#d6d6d6",
-                    backgroundColor: "#3e98c7",
-                  })}
-                />
-              </div>
-            </div>
           </div>
         </div>
 

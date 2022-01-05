@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import css from './Compare.module.css'
+import css from "./Compare.module.css";
+import DrivingDistance from "../components/shared/DrivingDistance";
+import { Rating } from "@mui/material";
+import DisplayImagesList from "../components/shared/DisplayImagesList";
 
 const CompareRestaurant = (_props) => {
   const [restaurant, setRestaurant] = useState(null);
   console.log(_props);
   let arr = _props.restaurant;
-  console.log(arr)
-
+  console.log(arr);
 
   useEffect(() => {
     axios
@@ -21,18 +23,35 @@ const CompareRestaurant = (_props) => {
       });
   }, []);
   return (
-    <div>
-    {restaurant &&
-      <div className={css.compare_fields}>
-      <h3>Name</h3><li className={css.compared_name}>{restaurant.name}
-      </li>
-      <h3>Reviews Count</h3><li className={css.compared_rating}>{restaurant.numberOfReviews}</li>
-      <h3>Rating</h3><li className={css.compared_rating}>{restaurant.rating}</li>
-      <h3>Cuisine</h3><li className={css.compared_rating}>{restaurant.cuisine.map((item, index) => (
-        <li key={index}>{item}</li> 
-      ))}</li>
+    <div className={css.service__container}>
+      {restaurant && (
+        <div className={css.compare_fields}>
+          <h2>{restaurant.name}</h2>
+          <Rating
+            name="read-only"
+            value={restaurant.rating}
+            readOnly
+            precision={0.5}
+          />
+          <p>{restaurant.reviewsCount} reviews</p>
+          <p className={css.green}>{restaurant.priceLevel}</p>
+          <h4>Cuisines</h4>
+          <div className={css.compare_list}>
+            {restaurant.cuisine.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
+          </div>
+          <DrivingDistance
+            ulat={_props.lat}
+            ulng={_props.lng}
+            slat={restaurant.latitude}
+            slng={restaurant.longitude}
+          />
+        </div>
+      )}
+      <div className={css.images}>
+        {restaurant && <DisplayImagesList photos={restaurant.photos} />}
       </div>
-          }
     </div>
   );
 };

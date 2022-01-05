@@ -7,16 +7,13 @@ const FetchWeather = (_props) => {
 
   const options = {
     method: "GET",
-    url: "https://community-open-weather-map.p.rapidapi.com/weather",
+    url: "https://api.openweathermap.org/data/2.5/weather?",
     params: {
       lat: _props.lat,
       lon: _props.lon,
       lang: "en",
       units: "metric",
-    },
-    headers: {
-      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_KEY,
+      appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
     },
   };
 

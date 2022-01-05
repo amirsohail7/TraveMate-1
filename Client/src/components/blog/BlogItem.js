@@ -47,26 +47,6 @@ const BlogItem = ({ blogs }) => {
               image="/static/images/cards/paella.jpg"
               alt="Paella dish"
             />
-
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" onClick={handleLike}>
-                {clicked ? (
-                  <FavoriteIcon
-                    sx={{
-                      cursor: "pointer",
-                      color: "grey",
-                    }}
-                  />
-                ) : (
-                  <FavoriteBorderIcon
-                    sx={{
-                      cursor: "pointer",
-                      color: "grey",
-                    }}
-                  />
-                )}
-              </IconButton>
-            </CardActions>
           </Card>
         ))}
     </Box>

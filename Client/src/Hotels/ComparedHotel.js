@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import css from './Compare.module.css'
+import css from "./Compare.module.css";
+import DrivingDistance from "../components/shared/DrivingDistance";
+import { Rating } from "@mui/material";
+import DisplayImagesList from "../components/shared/DisplayImagesList";
 
 const ComparedHotel = (_props) => {
   const [hotel, setHotel] = useState(null);
   console.log(_props);
   let arr = _props.hotel;
-  console.log(arr)
-
+  console.log(arr);
 
   useEffect(() => {
     axios
@@ -21,32 +23,37 @@ const ComparedHotel = (_props) => {
       });
   }, []);
   return (
-    <div>
-    {hotel &&
-      <div className={css.compare_fields}>
-      <h3>Name</h3><li className={css.compared_name}>{hotel.name}
-      </li>
-      <h3>Reviews Count</h3><li className={css.compared_rating}>{hotel.numberOfReviews}</li>
-      <h3>Rating</h3><li className={css.compared_rating}>{hotel.rating}</li>
-      <h3>Amenities</h3><li className={css.compared_rating}>{hotel.amenities.map((item, index) => (
-        <li key={index}>{item}</li> 
-      ))}</li>
+    <div className={css.service__container}>
+      {hotel && (
+        <div className={css.compare_fields}>
+          <h2>{hotel.name}</h2>
+          <Rating
+            name="read-only"
+            value={hotel.rating}
+            readOnly
+            precision={0.5}
+          />
+          <p>{hotel.reviewsCount} reviews</p>
+          <p className={css.green}>{hotel.priceLevel}</p>
+          <h4>Amenities</h4>
+          <div className={css.compare_list}>
+            {hotel.amenities.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
+          </div>
+          <DrivingDistance
+            ulat={_props.lat}
+            ulng={_props.lng}
+            slat={hotel.latitude}
+            slng={hotel.longitude}
+          />
+        </div>
+      )}
+      <div className={css.images}>
+        {hotel && <DisplayImagesList photos={hotel.photos} />}
       </div>
-          }
     </div>
   );
 };
 
 export default ComparedHotel;
-
-/* <ul className={css.compare_col}>
-        <li className={css.compared_data}>
-          <span className={css.compare_text}>Name {hotel.name}</span>
-        </li>
-        <li className={css.compared_data}>Rating {hotel.rating}</li>
-        <ul className={css.facilities}>
-          { {hoteldata.aminities.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}}
-        </ul>
-      </ul> */

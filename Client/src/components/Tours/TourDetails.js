@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getMultipleFiles } from "../shared/uploads";
 import { useHistory } from "react-router-dom";
+import css from "./TourDetails.module.css";
 
 const TourDetails = () => {
   const history = useHistory();
@@ -44,9 +45,13 @@ const TourDetails = () => {
 
   return (
     <div>
-      <div>
-        <button onClick={() => Submit()}></button>
-        <h2>{tourDetail.Name}</h2>
+      <div className={css.info}>
+        <div className={css.sidebyside}>
+          <h2>{tourDetail.name}</h2>
+          <button className={css.btn} onClick={() => Submit()}>
+            Book Tour
+          </button>
+        </div>
         <p>Destination {tourDetail.Destination}</p>
         <p>Departure from : {tourDetail.DepartureLocation}</p>
         <p>{tourDetail.Departure}</p>
@@ -56,23 +61,17 @@ const TourDetails = () => {
         <p>Provider : {tourDetail.provider.username}</p>
       </div>
 
-      <div className="col-6">
-        <h4 className="text-success font-weight-bold">Photos</h4>
+      <div>
         {multipleFiles.map((element, index) => (
           <div key={element._id}>
-            <h6 className="text-danger font-weight-bold">{element.title}</h6>
-            <div className="row">
+            <div className={css.row}>
               {element.files.map((file, index) => (
-                <div className="col-6">
-                  <div className="card mb-2 border-0 p-0">
-                    <img
-                      src={`http://localhost:3040/${file.filePath}`}
-                      height="200"
-                      className="card-img-top img-responsive"
-                      alt="img"
-                    />
-                  </div>
-                </div>
+                <img
+                  src={`http://localhost:3040/${file.filePath}`}
+                  height="200"
+                  className="card-img-top img-responsive"
+                  alt="img"
+                />
               ))}
             </div>
           </div>

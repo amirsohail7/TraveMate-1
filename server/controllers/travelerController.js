@@ -12,16 +12,18 @@ export const all_travelers = async (req, res) => {
     res.status(500).json(err);
   }
   /* Traveler.find()
+    .populate("photo")
     .then(result => {
       res.send(result);
     })
-    .catch(err =>{
+    .catch((err) => {
       console.log(err);
     }) */
 };
 
 export const specific_traveler = (req, res) => {
   Traveler.find({ _id: req.params.id })
+    .populate("photo")
     .then((result) => {
       res.send(result);
     })
@@ -72,7 +74,19 @@ export const create_traveler = (req, res, next) => {
 };
 
 //PUT Routes
-
+export const update = (req, res, next) => {
+  Traveler.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: false, upsert: false },
+    function (error, result) {
+      if (error) {
+        return next(error);
+      }
+      res.json(result);
+    }
+  );
+};
 //DELETE Routes
 
 export const delete_traveler = (req, res, next) => {

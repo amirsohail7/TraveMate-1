@@ -25,6 +25,7 @@ const FormSignin = ({ submitForm }) => {
           >
             <option value="Provider">Provider</option>
             <option value="Traveler">Traveler</option>
+            <option value="Admin">Admin</option>
           </select>
         </div>
 

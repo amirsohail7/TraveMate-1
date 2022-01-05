@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AccountMenu from "../shared/AccountMenu";
+import NavbarUser from "./NavbarUser";
 import { Button } from "../shared/Button";
 
 //using link instead of a tag it dont refresh whole page when clicked and itsbetter when route is taking us
@@ -86,8 +86,12 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/crawler" className="nav-links" onClick={closeMobileMenu}>
-                Crawler
+              <Link
+                to="/crawler"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Trips
               </Link>
             </li>
 
@@ -101,13 +105,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && (
-            <Button buttonStyle="btn--outline" link="/signin">
-              SIGN IN
-            </Button>
-          )}
-
-          <AccountMenu />
+          {button && <NavbarUser />}
         </div>
       </nav>
     </>

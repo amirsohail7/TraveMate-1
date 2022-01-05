@@ -62,7 +62,7 @@ const BlogDetails = () => {
               <Grid item>
                 <ButtonBase sx={{ width: 128, height: 128 }}>
                   <Img
-                    alt=""
+                    alt={blogDetail.author.username}
                     src="/static/images/grid/complex.jpg"
                   />
                 </ButtonBase>
@@ -82,7 +82,7 @@ const BlogDetails = () => {
                     component="div"
                     sx={{ width: 60 }}
                   >
-                    <FavoriteIcon/> {/* likes count here */}
+                    <FavoriteIcon /> {/* likes count here */}
                     {/* blogDetail.author.username.interests.likes.length */}
                   </Typography>
                 </Grid>

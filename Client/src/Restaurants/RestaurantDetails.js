@@ -53,7 +53,7 @@ const RestaurantDetails = () => {
             </h2>
             <h2>{restaurantDetail.name}</h2>
           </div>
-          <div className={module.coloumn3}>
+          <div className={css.coloumn3}>
             <button
               className={css.paymentbutton}
               onClick={() => handle_reservation()}
@@ -70,29 +70,24 @@ const RestaurantDetails = () => {
               <span>
                 <EmailIcon />
               </span>
-              Email {restaurantDetail.email}
+              {restaurantDetail.email}
             </p>
             <p>
               <span>
                 <RestaurantMenuIcon />
               </span>
-              cuisine {restaurantDetail.cuisine}
+              {restaurantDetail.cuisine}
             </p>
             <p>
               <span>
                 <PinDropIcon />
               </span>
-              Address {restaurantDetail.address}
+              {restaurantDetail.address}
             </p>
           </div>
           <div className={css.coloumn2}>
             <p className={css.muted}>{restaurantDetail.priceLevel}</p>
-            <Rating
-              name="read-only"
-              value={restaurantDetail.rating}
-              readOnly
-              precision={0.5}
-            />
+            <Rating name="read-only" value={restaurantDetail.rating} readOnly />
             <p>Reviews {restaurantDetail.reviewsCount}</p>
           </div>
           <div className={css.coloumn3}>
@@ -119,7 +114,9 @@ const RestaurantDetails = () => {
           <div className={css.Reviews}>
             <WriteReview
               service={restaurantDetail._id}
-              serviceType={css.restaurantDetail}
+              serviceType="Restaurant"
+              reviews={restaurantDetail.reviews.length}
+              rating={restaurantDetail.rating}
             />
             <h2>Traveler Feedback</h2>
             <ServiceReview Reviews={restaurantDetail.reviews} />

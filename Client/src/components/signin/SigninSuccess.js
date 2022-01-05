@@ -19,6 +19,10 @@ const SigninSuccess = () => {
       console.log("redirect to travler dash");
       history.push("/Traveler/Dashboard");
     }
+    if (userType === "Admin") {
+      console.log("redirect to admin dash");
+      history.push("/admin");
+    }
   };
 
   return (
