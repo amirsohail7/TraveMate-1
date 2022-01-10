@@ -23,9 +23,10 @@ import ExploreNearby from "./components/explore/ExploreNearby";
 import Traveler from "./components/Dashboards/Traveler";
 import Provider from "./components/Dashboards/Provider";
 import Tourdetails from "./components/Tours/TourDetails";
+import Admin from './components/admin/Admin'
 import RestaurantDetails from "./Restaurants/RestaurantDetails";
 
-import Dashboard from "./components/admin/Dashboard";
+/* import Dashboard from "./components/admin/Dashboard"; */
 import Crawler from "./components/crawler/Crawler";
 import Hotels from "./Hotels/Hotels";
 import HotelDetails from "./Hotels/HotelDetails";
@@ -81,7 +82,7 @@ function App() {
               component={Traveler}
             />
             <Route path="/ExploreNearby" component={ExploreNearby} />
-            <Route path="/admin" component={Dashboard} />
+            <Route path="/admin" component={Admin} />
             <Route path="/crawler" component={Crawler} />
             <Route path="/compare/:id1/:id2/:id3?" exact component={Compare} />
             <Route
@@ -91,6 +92,7 @@ function App() {
             />
             <Route path="/book/:type/:id" component={PayByCard} />
             <Route path="/updatebooking" component={Updatebooking} />
+            {/* <Route path="/adminhome" component={Admin} /> */}
           </Switch>
         </Router>
       </HotelProvider>

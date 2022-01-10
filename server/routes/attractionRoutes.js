@@ -7,12 +7,14 @@ import {
   delete_attraction,
   specific_attraction,
   update,
+  count_attractions
 } from "../controllers/attractionController.js";
 
 const router = Router();
 
 router.get("/", all_attractions);
 router.get("/detailed", all_attractions_detailed);
+router.get("/count", count_attractions);
 router.get("/:id", specific_attraction);
 router.post("/create_hotel", create_attraction);
 router.put("/:sid/AddReview/:rid", add_review);

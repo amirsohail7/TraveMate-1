@@ -44,7 +44,7 @@ const HomePage = () => {
 
   return (
     <>
-      <ImageList
+      {/* <ImageList
         sx={{ height: 450 }}
         variant="quilted"
         cols={4}
@@ -63,7 +63,7 @@ const HomePage = () => {
             />
           </ImageListItem>
         ))}
-      </ImageList>
+      </ImageList> */}
       <div className={css.cards}>
         <h1>Check these amazing hotels</h1>
         <div className={css.cards__container}>

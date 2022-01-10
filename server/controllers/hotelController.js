@@ -12,6 +12,15 @@ export const all_hotels = (req, res) => {
     });
 };
 
+export const count_hotels=async (req,res)=>{
+try {
+  const total= await Hotel.count();
+  res.status(200).json(total);
+} catch (err) {
+  res.status(500).json(err);
+}
+}
+
 export const all_hotels_detailed = (req, res) => {
   Hotel.find()
     .populate("provider")

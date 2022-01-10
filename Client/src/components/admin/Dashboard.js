@@ -1,3 +1,4 @@
+//this component is not currently in use, it is just here for future updates
 import React  from 'react';
 import Sidebar from "./features/sidebar/Sidebar";
 import Topbar from "./features/topbar/Topbar";
@@ -11,7 +12,7 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct  from "./pages/newProduct/NewProduct";
 
-function Dashboard()
+function AdminDashboard()
  {
   return (
     <Router>
@@ -19,10 +20,10 @@ function Dashboard()
       <div className="container">
         <Sidebar />
         <Switch>
-          <Route exact path="/admin">
+          <Route exact path="/adminhome">
             <Home />
           </Route>
-          <Route path="/users">
+          {/* <Route path="/users">
             <UserList />
           </Route>
           <Route path="/user/:userId">
@@ -39,11 +40,11 @@ function Dashboard()
           </Route>
           <Route path="/newproduct">
             <NewProduct />
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </Router>
   );
 }
 
-export default Dashboard;
+export default AdminDashboard;

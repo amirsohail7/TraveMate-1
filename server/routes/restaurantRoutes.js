@@ -8,12 +8,15 @@ import {
   add_review,
   top_restaurants,
   update,
+  count_restaurants
+
 } from "../controllers/restaurantController.js";
 
 const router = Router();
 
 router.get("/", restaurant_get);
 router.get("/detailed", restaurant_get_detailed);
+router.get("/count", count_restaurants);
 router.get("/:id", specific_restaurant);
 router.get("/top/:city", top_restaurants);
 router.post("/create", restaurant_create);

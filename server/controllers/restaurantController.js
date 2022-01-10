@@ -13,6 +13,15 @@ export const restaurant_get = (req, res) => {
     });
 };
 
+export const count_restaurants=async (req,res)=>{
+  try {
+    const total= await Restaurant.count();
+    res.status(200).json(total);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  }
+
 export const restaurant_get_detailed = (req, res) => {
   Restaurant.find()
     .populate("provider")

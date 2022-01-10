@@ -36,10 +36,10 @@ console.log(newUsers)
             <span className="widgetSmUsername">{user.username}</span>
             {/* <span className="widgetSmUserTitle">Travler</span> */}
           </div>
-          <Link className="widgetSmButton" to="">
+          {/* <Link className="widgetSmButton" to="">
             <Visibility className="widgetSmIcon" />
             
-          </Link>
+          </Link> */}
         </li>))}
       </ul>
     </div>

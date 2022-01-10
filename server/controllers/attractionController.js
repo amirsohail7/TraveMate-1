@@ -12,6 +12,16 @@ export const all_attractions = (req, res) => {
     });
 };
 
+export const count_attractions=async (req,res)=>{
+  try {
+    const total= await Attraction.count();
+    res.status(200).json(total);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  }
+
+
 export const all_attractions_detailed = (req, res) => {
   Attraction.find()
     .populate("provider")

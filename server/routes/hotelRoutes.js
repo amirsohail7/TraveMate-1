@@ -7,12 +7,14 @@ import {
   delete_hotel,
   specific_hotel,
   update,
+  count_hotels
 } from "../controllers/hotelController.js";
 
 const router = Router();
 
 router.get("/", all_hotels);
 router.get("/detailed", all_hotels_detailed);
+router.get("/count", count_hotels);
 router.get("/:id", specific_hotel);
 router.post("/create_hotel", create_hotel);
 router.put("/update/:id", update);
